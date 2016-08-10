@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <sec:http security="none" pattern="/css/**" />
+    <sec:http security="none" pattern="/images/**" />
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:form-login login-page="/account/signonForm"
+                        login-processing-url="/account/signon"
+                        authentication-failure-url="/account/signonForm?error=true" />
+        <sec:logout delete-cookies="JSESSIONID" logout-url="/account/signoff"
+                    logout-success-url="/" />
+        <sec:intercept-url pattern="/account/editAccount*"
+                           access="isAuthenticated()" />
+        <sec:intercept-url pattern="/order/**" access="isAuthenticated()" />
+    </sec:http>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider
+                user-service-ref="userDetailsService">
+            <sec:password-encoder ref="passwordEncoder" />
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+</beans>

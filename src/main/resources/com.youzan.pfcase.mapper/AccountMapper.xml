@@ -4,12 +4,51 @@
 
 <mapper namespace="com.youzan.pfcase.mapper.AccountMapper">
 
-    <!--<cache />-->
+    <cache />
 
     <select id="getAccountByUsername" parameterType="string" resultType="Account">
-        SELECT *
-        FROM ACCOUNT
-        WHERE ACCOUNT.USERNAME = #{username}
+        SELECT
+        SIGNON.USERNAME,
+        SIGNON.PASSWORD,
+        ACCOUNT.EMAIL
+        FROM ACCOUNT, SIGNON
+        WHERE ACCOUNT.USERID = #{username}
+        AND SIGNON.USERNAME = ACCOUNT.USERID
     </select>
 
+    <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
+        SELECT
+        SIGNON.USERNAME,
+        SIGNON.PASSWORD,
+        ACCOUNT.EMAIL
+        FROM ACCOUNT, SIGNON
+        WHERE ACCOUNT.USERID = #{param1}
+        AND SIGNON.PASSWORD = #{param2}
+        AND SIGNON.USERNAME = ACCOUNT.USERID
+    </select>
+
+    <update id="updateAccount" parameterType="Account">
+        UPDATE ACCOUNT SET
+        EMAIL = #{email}
+        WHERE USERID = #{username}
+    </update>
+
+    <insert id="insertAccount" parameterType="Account">
+        INSERT INTO ACCOUNT
+        (EMAIL, USERID)
+        VALUES
+        (#{email}, #{username})
+    </insert>
+
+    <update id="updateSignon" parameterType="Account">
+        UPDATE SIGNON SET PASSWORD = #{password}
+        WHERE USERNAME = #{username}
+    </update>
+
+    <insert id="insertSignon" parameterType="Account">
+        INSERT INTO SIGNON (PASSWORD,USERNAME)
+        VALUES (#{password}, #{username})
+    </insert>
+
 </mapper>
+

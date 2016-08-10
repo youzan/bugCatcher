@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping map-id="accountExcludeUsername">
+        <class-a>com.youzan.pfcase.web.account.AccountForm</class-a>
+        <class-b>com.youzan.pfcase.domain.Account</class-b>
+        <field-exclude><a>username</a><b>username</b></field-exclude>
+    </mapping>
+</mappings>
