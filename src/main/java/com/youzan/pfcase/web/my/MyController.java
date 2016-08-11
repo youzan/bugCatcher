@@ -1,10 +1,7 @@
-package com.youzan.pfcase.web.hello;
-
-import javax.inject.Inject;
+package com.youzan.pfcase.web.my;
 
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.UserDetails;
-import com.youzan.pfcase.service.AccountService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/")
-public class HelloController {
+public class MyController {
 
 //	@Inject
 //	protected AccountService accountService;
@@ -31,6 +28,6 @@ public class HelloController {
 			model.addAttribute("message", "please log in.");
 		}
 
-		return "hello";
+		return "my";
 	}
 }
