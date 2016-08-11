@@ -10,7 +10,8 @@
         SELECT
         SIGNON.USERNAME,
         SIGNON.PASSWORD,
-        ACCOUNT.EMAIL
+        ACCOUNT.EMAIL,
+        ACCOUNT.ROLE
         FROM ACCOUNT, SIGNON
         WHERE ACCOUNT.USERID = #{username}
         AND SIGNON.USERNAME = ACCOUNT.USERID
@@ -20,7 +21,8 @@
         SELECT
         SIGNON.USERNAME,
         SIGNON.PASSWORD,
-        ACCOUNT.EMAIL
+        ACCOUNT.EMAIL,
+        ACCOUNT.ROLE
         FROM ACCOUNT, SIGNON
         WHERE ACCOUNT.USERID = #{param1}
         AND SIGNON.PASSWORD = #{param2}
@@ -29,15 +31,16 @@
 
     <update id="updateAccount" parameterType="Account">
         UPDATE ACCOUNT SET
-        EMAIL = #{email}
+        EMAIL = #{email},
+        ROLE = #{role}
         WHERE USERID = #{username}
     </update>
 
     <insert id="insertAccount" parameterType="Account">
         INSERT INTO ACCOUNT
-        (EMAIL, USERID)
+        (USERID, EMAIL, ROLE)
         VALUES
-        (#{email}, #{username})
+        (#{username}, #{email}, #{role})
     </insert>
 
     <update id="updateSignon" parameterType="Account">

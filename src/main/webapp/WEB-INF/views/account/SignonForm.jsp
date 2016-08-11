@@ -29,7 +29,7 @@
 
         <p>Please enter your username and password.</p>
         <p>
-            Username: <input type='text' name='j_username' value='sunjun'>
+            Username: <input type='text' name='j_username' value='admin'>
             <br />
             Password: <input type='password' name='j_password' value="j" />
         </p>

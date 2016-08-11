@@ -1,5 +1,6 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,6 +53,12 @@
                 <tr>
                     <td>Email:</td>
                     <td><form:input size="40" path="email" /></td>
+                </tr>
+                <tr>
+                    <td>岗位:</td>
+                    <td><form:radiobutton path="role" value="cs"/>测试</td>
+                    <td><form:radiobutton path="role" value="kf"/>开发</td>
+                    <td><form:radiobutton path="role" value="cp"/>产品</td>
                 </tr>
             </table>
 

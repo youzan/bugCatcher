@@ -31,13 +31,11 @@ public class Account implements Serializable {
 
     private String email;
 
-    public String getUsername() {
-        return username;
-    }
+    private String role;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
 
     public String getPassword() {
         return password;
@@ -55,5 +53,8 @@ public class Account implements Serializable {
         this.email = email;
     }
 
+    public String getRole() { return role; }
+
+    public void setRole(String role) { this.role = role; }
 
 }
