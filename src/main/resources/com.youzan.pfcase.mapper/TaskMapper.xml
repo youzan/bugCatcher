@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youzan.pfcase.mapper.TaskMapper">
+
+    <cache />
+
+    <select id="getAllTask" resultType="Task">
+        SELECT
+        *
+        FROM TASK
+    </select>
+
+
+    <insert id="insertTask" parameterType="Task">
+        INSERT INTO TASK
+        (taskname, owner, creator, modifier)
+        VALUES
+        (#{taskname}, #{owner}, #{creator}, #{modifier})
+    </insert>
+
+
+    <update id="updateTask" parameterType="Task">
+        UPDATE TASK SET
+        taskname = ${taskname}, owner = ${owner}, modifier = ${modifier}, updatetime = ${updatetime}
+        WHERE taskid = #{taskid}
+    </update>
+
+</mapper>
+
+
+
+

@@ -5,6 +5,7 @@ import com.youzan.pfcase.domain.UserDetails;
 import com.youzan.pfcase.web.account.AccountForm.EditAccount;
 import com.youzan.pfcase.web.account.AccountForm.NewAccount;
 import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -29,13 +30,13 @@ import java.util.List;
 @RequestMapping("account")
 public class AccountController {
 
-    @Inject
+    @Autowired
     protected Mapper beanMapper;
 
-    @Inject
+    @Autowired
     protected AccountHelper accountHelper;
 
-    @Inject
+    @Autowired
     protected PasswordEqualsValidator passwordEqualsValidator;
 
     @InitBinder("accountForm")

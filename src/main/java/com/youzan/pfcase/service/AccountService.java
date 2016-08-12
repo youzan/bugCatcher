@@ -29,8 +29,7 @@ public class AccountService {
      */
     
     public Account getAccount(String username, String password) {
-        return accountMapper.getAccountByUsernameAndPassword(username,
-                password);
+        return accountMapper.getAccountByUsernameAndPassword(username, password);
     }
 
     /*
