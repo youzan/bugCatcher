@@ -1,5 +1,16 @@
-package com.youzan.pfcase.web.account;
+package com.youzan.pfcase.web.task;
 
+import com.youzan.pfcase.web.account.AccountForm;
+import com.youzan.pfcase.web.account.AccountHelper;
+import com.youzan.pfcase.web.account.PasswordEqualsValidator;
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.UserDetails;
 import com.youzan.pfcase.web.account.AccountForm.EditAccount;
@@ -22,44 +33,17 @@ import java.util.Collections;
 import java.util.List;
 
 
-
 /**
- * Created by sunjun on 16/8/8.
+ * Created by sunjun on 16/8/12.
  */
 @Controller
-@RequestMapping("account")
-public class AccountController {
-
-    @Autowired
-    protected Mapper beanMapper;
+@RequestMapping("task")
+public class TaskController {
 
     @Autowired
     protected AccountHelper accountHelper;
 
-    @Autowired
-    protected PasswordEqualsValidator passwordEqualsValidator;
-
-    @InitBinder("accountForm")
-    public void initBinder(WebDataBinder webDataBinder) {
-        webDataBinder.addValidators(passwordEqualsValidator);
-    }
-
-    @ModelAttribute
-    public AccountForm setUpForm() {
-        return new AccountForm();
-    }
-
-    @RequestMapping("signonForm")
-    public String signonForm() {
-        return "account/SignonForm";
-    }
-
-    @RequestMapping("newAccountForm")
-    public String newAccountForm() {
-        return "account/NewAccountForm";
-    }
-
-    @RequestMapping("newAccount")
+    @RequestMapping("newtask")
     public String newAccount(AccountForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "account/NewAccountForm";
@@ -67,5 +51,5 @@ public class AccountController {
         accountHelper.newAccount(form);
         return "redirect:/account/signonForm";
     }
-
 }
+

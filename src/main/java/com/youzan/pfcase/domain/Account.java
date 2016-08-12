@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 
-    private static final long serialVersionUID = 8751282105532159742L;
+    private static final long serialVersionUID = -7860856404701820060L;
 
     private String username;
 

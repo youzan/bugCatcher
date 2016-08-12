@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.youzan.pfcase.mapper.CaselistMapper">
+
+    <cache />
+
+    <select id="getAllCaselist" resultType="Caselist">
+        SELECT
+        *
+        FROM CASELIST
+    </select>
+
+
+    <insert id="insertCaselist" parameterType="Caselist">
+        INSERT INTO caselist
+        (casename, belongmodulea, belongmoduleb, belongmodulec, priority, casestep, reviewed, automated, creator, modifier)
+        VALUES
+        (#{casename}, #{belongmodulea}, #{belongmoduleb}, #{belongmodulec}, #{priority}, #{casestep}, #{reviewed}, #{automated}, #{creator}, #{modifier})
+    </insert>
+
+</mapper>
