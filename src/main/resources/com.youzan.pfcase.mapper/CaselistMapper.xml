@@ -20,4 +20,12 @@
         (#{casename}, #{belongmodulea}, #{belongmoduleb}, #{belongmodulec}, #{priority}, #{casestep}, #{reviewed}, #{automated}, #{creator}, #{modifier})
     </insert>
 
+
+    <update id="updateCaselist" parameterType="Caselist">
+        UPDATE caselist SET
+        casename = ${casename}, belongmodulea = ${belongmodulea}, belongmoduleb = ${belongmoduleb}, belongmodulec = ${belongmodulec},
+        priority = ${priority}, casestep = ${casestep}, reviewed = ${reviewed}, automated = ${automated}, modifier = ${modifier}, updatetime = ${updatetime}
+        WHERE caseid = #{caseid}
+    </update>
+
 </mapper>

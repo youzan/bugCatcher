@@ -64,9 +64,9 @@ public class CaselistController {
         Account account = userDetails.getAccount();
         caselist.setCreator(account.getUsername());
         caselist.setModifier(account.getUsername());
-        Date date = new Date();
-        caselist.setCreatetime(date);
-        caselist.setUpdatetime(date);
+//        Date date = new Date();
+//        caselist.setCreatetime(date);
+//        caselist.setUpdatetime(date);
 
         caselistService.insertCaselist(caselist);
 
