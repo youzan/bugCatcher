@@ -36,6 +36,13 @@ public class Caselist implements Serializable {
 
     private Date updatetime;
 
+    public int getCaseid() {
+        return caseid;
+    }
+
+    public void setCaseid(int caseid) {
+        this.caseid = caseid;
+    }
 
     public String getCasename() {
         return casename;

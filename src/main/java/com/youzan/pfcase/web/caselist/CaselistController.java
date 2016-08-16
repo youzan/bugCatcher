@@ -4,6 +4,7 @@ import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.Caselist;
 import com.youzan.pfcase.domain.UserDetails;
 import com.youzan.pfcase.service.CaselistService;
+import com.youzan.pfcase.service.TaskcaseService;
 import com.youzan.pfcase.web.account.AccountForm;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.DatabaseMetaData;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by sunjun on 16/8/12.
@@ -31,15 +34,27 @@ public class CaselistController {
     @Autowired
     protected CaselistService caselistService;
 
+    @Autowired
+    protected TaskcaseService taskcaseService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String getAllCaselist(ModelMap model) {
         model.addAttribute("allCaselist", caselistService.getAllCaselist());
-        model.addAttribute("case1name", caselistService.getAllCaselist().get(0).getCasename());
-        model.addAttribute("case1auto", caselistService.getAllCaselist().get(0).getAutomated());
-        model.addAttribute("case2name", caselistService.getAllCaselist().get(1).getCasename());
-        model.addAttribute("case2auto", caselistService.getAllCaselist().get(1).getAutomated());
         return "caselist/AllCaselist";
     }
+
+    @RequestMapping("taskcase")
+    public String submitUsers(@RequestParam(value = "caseids") List<Integer> caseids)
+    {
+        System.out.print(caseids.get(0));
+        System.out.print(caseids.get(3));
+        System.out.print(caseids.get(5));
+
+        taskcaseService.insertCaseids(caseids);
+
+        return "redirect:/";
+    }
+
 
 
 
