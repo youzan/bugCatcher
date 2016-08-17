@@ -3,7 +3,16 @@
 
 
 <div>
-    <form:form action="${pageContext.request.contextPath}/caselist/taskcase">
+    <form:form modelAttribute="taskcases" action="${pageContext.request.contextPath}/caselist/newtaskcase">
+
+        <table>
+            <tr>
+                <td>任务id:</td>
+                <td><form:input path="taskid" /></td>
+            </tr>
+        </table>
+
+
         <table>
             <tr>
                 <th><b>用例id</b></th>
@@ -17,6 +26,8 @@
                 <th><b>创建人</b></th>
                 <th><b>修改人</b></th>
                 <th><b>任务用例?</b></th>
+                <th><b>编辑?</b></th>
+                <th><b>删除?</b></th>
             </tr>
             <c:forEach var="caselist" items="${allCaselist}">
                 <tr>
@@ -31,8 +42,10 @@
                     <td>${caselist.creator}</td>
                     <td>${caselist.modifier}</td>
                     <td>
-                        <input type = "checkbox" name = "caseids" value = "${caselist.caseid}" checked = "checked" />
+                        <input type = "checkbox" name = "caseids" value = "${caselist.caseid}" />
                     </td>
+                    <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}">编辑</a></td>
+                    <td><a href="${pageContext.request.contextPath}/caselist/delCaselist?caseid=${caselist.caseid}">删除</a></td>
                 </tr>
             </c:forEach>
 

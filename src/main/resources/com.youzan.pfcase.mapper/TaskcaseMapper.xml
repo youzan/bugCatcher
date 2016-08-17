@@ -17,6 +17,14 @@
     </insert>
 
 
+    <update id="updateTaskid" parameterType="Taskcases">
+        UPDATE taskcase
+        SET taskid = #{taskid}
+        WHERE TASKID = 0
+    </update>
+
+
+
 </mapper>
 
 

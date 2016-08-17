@@ -2,10 +2,10 @@ package com.youzan.pfcase.web.caselist;
 
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.Caselist;
+import com.youzan.pfcase.domain.Taskcases;
 import com.youzan.pfcase.domain.UserDetails;
 import com.youzan.pfcase.service.CaselistService;
 import com.youzan.pfcase.service.TaskcaseService;
-import com.youzan.pfcase.web.account.AccountForm;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.DatabaseMetaData;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,31 +35,29 @@ public class CaselistController {
     @Autowired
     protected TaskcaseService taskcaseService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getAllCaselist(ModelMap model) {
+    @ModelAttribute
+    public CaselistForm setUpForm() { return new CaselistForm(); }
+
+
+
+
+
+
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public String getAllCaselist(@ModelAttribute("taskcases") Taskcases taskcases, ModelMap model) {
         model.addAttribute("allCaselist", caselistService.getAllCaselist());
+
         return "caselist/AllCaselist";
     }
 
-    @RequestMapping("taskcase")
-    public String submitUsers(@RequestParam(value = "caseids") List<Integer> caseids)
+    @RequestMapping("newtaskcase")
+    public String newTaskcase(Taskcases taskcases)
     {
-        System.out.print(caseids.get(0));
-        System.out.print(caseids.get(3));
-        System.out.print(caseids.get(5));
-
-        taskcaseService.insertCaseids(caseids);
+        taskcaseService.insertTaskcases(taskcases);
 
         return "redirect:/";
     }
 
-
-
-
-    @ModelAttribute
-    public CaselistForm setUpForm() {
-        return new CaselistForm();
-    }
 
     @RequestMapping("newCaselistForm")
     public String newCaselistForm() {
@@ -87,6 +83,16 @@ public class CaselistController {
 
         return "redirect:/";
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }

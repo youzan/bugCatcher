@@ -1,6 +1,7 @@
 package com.youzan.pfcase.service;
 
 import com.youzan.pfcase.domain.Caselist;
+import com.youzan.pfcase.domain.Taskcases;
 import com.youzan.pfcase.mapper.CaselistMapper;
 import com.youzan.pfcase.mapper.TaskcaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,11 @@ public class TaskcaseService {
     @Autowired
     private TaskcaseMapper taskcaseMapper;
 
+
     @Transactional
-    public void insertCaseids(List<Integer> caseids) {
-        taskcaseMapper.insertCaseids(caseids);
+    public void insertTaskcases(Taskcases taskcases) {
+        taskcaseMapper.insertCaseids(taskcases.getCaseids());
+        taskcaseMapper.updateTaskid(taskcases);
     }
 
 

@@ -42,6 +42,7 @@
 
 
             <input type="submit" name="newCaselist" value="提交" />
+        </table>
     </form:form>
 </div>
 
