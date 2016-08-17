@@ -25,7 +25,7 @@ public class MyController {
 			Account account = userDetails.getAccount();
 			model.addAttribute("message", account.getEmail());
 		} catch (Exception e) {
-			model.addAttribute("message", "please log in.");
+			model.addAttribute("message", "请登录.");
 		}
 
 		return "my";

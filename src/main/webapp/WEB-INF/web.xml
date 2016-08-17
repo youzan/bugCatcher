@@ -58,4 +58,22 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<el-ignored>false</el-ignored>
+			<page-encoding>UTF-8</page-encoding>
+			<scripting-invalid>false</scripting-invalid>
+			<include-prelude>/WEB-INF/views/common/include.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/notFoundError.jsp</location>
+	</error-page>
+	<!--<error-page>-->
+		<!--<error-code>500</error-code>-->
+		<!--<location>/WEB-INF/views/systemError.jsp</location>-->
+	<!--</error-page>-->
+
 </web-app>
