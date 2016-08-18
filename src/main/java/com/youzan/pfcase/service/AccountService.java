@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by sunjun on 16/8/2.
@@ -21,6 +22,9 @@ public class AccountService {
     
     public Account getAccount(String username) {
         return accountMapper.getAccountByUsername(username);
+    }
+    public List<Account> getAllKFAccount() {
+        return accountMapper.getAllKFAccount();
     }
 
     /*

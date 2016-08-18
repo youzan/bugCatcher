@@ -12,6 +12,20 @@
         FROM TASK
     </select>
 
+    <select id="getTaskByTaskid" parameterType="int" resultType="Task">
+        SELECT
+        *
+        FROM TASK
+        WHERE TASK.taskid= ${_parameter}
+    </select>
+
+    <select id="getUnpreparedTasks" resultType="Task">
+        SELECT
+        *
+        FROM TASK
+        WHERE TASK.prepared=0
+    </select>
+
 
     <insert id="insertTask" parameterType="Task">
         INSERT INTO TASK
@@ -23,10 +37,20 @@
 
     <update id="updateTask" parameterType="Task">
         UPDATE TASK SET
-        taskname = ${taskname}, owner = ${owner}, modifier = ${modifier}, updatetime = ${updatetime}
+        taskname = "${taskname}", owner = "${owner}", modifier = "${modifier}", updatetime = "${updatetime}"
         WHERE taskid = #{taskid}
     </update>
 
+    <update id="updateTaskPrepared" parameterType="int">
+        UPDATE TASK SET
+        prepared = 1
+        WHERE taskid = #{_parameter}
+    </update>
+
+    <delete id="delTask" parameterType="int">
+        DELETE FROM task
+        WHERE taskid = #{_parameter}
+    </delete>
 </mapper>
 
 

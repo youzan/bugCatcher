@@ -7,6 +7,24 @@
     <cache />
 
 
+    <insert id="insertCaseids" parameterType="java.util.List">
+        INSERT INTO taskcase
+        (caseid)
+        VALUES
+        <foreach collection="list" item="caseid" index="index" open="(" separator="),("  close=")">
+            #{caseid}
+        </foreach>
+    </insert>
+
+
+    <update id="updateTaskid" parameterType="Taskcases">
+        UPDATE taskcase
+        SET taskid = #{taskid}
+        WHERE TASKID = 0
+    </update>
+
+
+
 </mapper>
 
 
