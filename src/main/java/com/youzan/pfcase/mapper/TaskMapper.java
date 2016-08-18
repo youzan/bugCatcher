@@ -14,6 +14,7 @@ public interface TaskMapper {
 
     List<Task> getAllTask();
     List<Task> getUnpreparedTasks();
+    Task getTaskByTaskid(int taskid);
 
 
     void insertTask(Task task);

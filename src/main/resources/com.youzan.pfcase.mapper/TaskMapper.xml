@@ -12,6 +12,13 @@
         FROM TASK
     </select>
 
+    <select id="getTaskByTaskid" parameterType="int" resultType="Task">
+        SELECT
+        *
+        FROM TASK
+        WHERE TASK.taskid= ${_parameter}
+    </select>
+
     <select id="getUnpreparedTasks" resultType="Task">
         SELECT
         *
@@ -30,7 +37,7 @@
 
     <update id="updateTask" parameterType="Task">
         UPDATE TASK SET
-        taskname = ${taskname}, owner = ${owner}, modifier = ${modifier}, updatetime = ${updatetime}
+        taskname = "${taskname}", owner = "${owner}", modifier = "${modifier}", updatetime = "${updatetime}"
         WHERE taskid = #{taskid}
     </update>
 

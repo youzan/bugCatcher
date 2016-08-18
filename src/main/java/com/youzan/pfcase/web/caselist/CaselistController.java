@@ -45,7 +45,7 @@ public class CaselistController {
 
 
 
-
+    //为某任务分配用例
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public String getAllCaselist(@ModelAttribute("taskcases") Taskcases taskcases, ModelMap model) {
         model.addAttribute("unpreparedTasks", taskService.getUnpreparedTasks());
@@ -63,6 +63,11 @@ public class CaselistController {
     }
 
 
+
+
+
+
+    //新建case
     @RequestMapping("newCaselistForm")
     public String newCaselistForm() {
         return "caselist/NewCaselistForm";
@@ -84,6 +89,26 @@ public class CaselistController {
 
         return "redirect:/";
     }
+
+
+
+
+
+
+
+
+    //查看/编辑case
+    @RequestMapping(value = "editCaselistForm", method = RequestMethod.GET)
+    public String getCaselist(@RequestParam("caseid") int caseid, @RequestParam("action") String action, ModelMap model) {
+        Caselist caselist = caselistService.getCaselist(caseid);
+        model.addAttribute("caselist", caselist);
+        model.addAttribute("action", action);
+
+
+        return "caselist/EditCaselistForm";
+
+    }
+
 
     @RequestMapping("editCaselist")
     public String editCaselist(@ModelAttribute("caselist") Caselist caselist, BindingResult result) {
@@ -107,18 +132,14 @@ public class CaselistController {
     }
 
 
-    @RequestMapping(value = "editCaselistForm", method = RequestMethod.GET)
-    public String getCaselist(@RequestParam("caseid") int caseid, @RequestParam("action") String action, ModelMap model) {
-        Caselist caselist = caselistService.getCaselist(caseid);
-        model.addAttribute("caselist", caselist);
-        model.addAttribute("action", action);
 
 
-        return "caselist/EditCaselistForm";
-
-    }
 
 
+
+
+
+    //删除case
     @RequestMapping("delCaselist")  //post
     public String delCaselist(@RequestParam("caseid") int caseid) {
         caselistService.delCaselist(caseid);
@@ -126,7 +147,6 @@ public class CaselistController {
         return "caselist/all";
 
     }
-
 
 
 

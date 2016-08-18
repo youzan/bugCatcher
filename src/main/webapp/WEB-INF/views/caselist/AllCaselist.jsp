@@ -53,7 +53,7 @@
                     </td>
                     <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=get">查看</a></td>
                     <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=edit">编辑</a></td>
-                    <td><a href="${pageContext.request.contextPath}/caselist/delCaselist?caseid=${caselist.caseid}" class="del">删除</a></td>
+                    <td><a href="javascript:void(0)" data-id="${caselist.caseid}" class="del">删除</a></td>
                 </tr>
             </c:forEach>
 
@@ -69,19 +69,19 @@
 </div>
 
 
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.6/jquery.js" />"></script>
+<script type="text/javascript" src="<c:url value="/jquery/1.6/jquery.js" />"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
-        $("a.del").click(function () {
+        $(".del").click(function () {
             var link = $(this);
             $.ajax({
                 type: "POST",
-                url: link.attr("href"),
-                data: "",
-                contentType: "text/plain",
-                dataType: "text",
-                success: function (text) {
+                url:"${pageContext.request.contextPath}/caselist/delCaselist",
+                data: {
+                    id: link.data("id")
+                },
+                success: function (resp) {
+
                 },
                 error: function (xhr) {
                 }

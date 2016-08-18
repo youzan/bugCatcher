@@ -14,6 +14,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by sunjun on 16/8/12.
@@ -31,13 +35,6 @@ public class TaskController {
     @Autowired
     protected TaskService taskService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getAllTask(ModelMap model) {
-        model.addAttribute("alltask", taskService.getAllTask());
-        return "task/AllTask";
-    }
-
-
     @ModelAttribute
     public TaskForm setUpForm() {
         return new TaskForm();
@@ -47,6 +44,28 @@ public class TaskController {
 //TODO: RequestMapping全部改成小写
 
 
+
+
+
+
+
+    //查看所有任务
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public String getAllTask(ModelMap model) {
+        model.addAttribute("allTask", taskService.getAllTask());
+
+        return "task/AllTask";
+    }
+
+
+
+
+
+
+
+
+
+    //新建任务
     @RequestMapping("newTaskForm")
     public String newTaskForm(ModelMap model) {
         model.addAttribute("KFAccounts", accountService.getAllKFAccount());
@@ -73,6 +92,55 @@ public class TaskController {
 
         return "redirect:/";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    //查看/编辑task
+    @RequestMapping(value = "editTaskForm", method = RequestMethod.GET)
+    public String getCaselist(@RequestParam("taskid") int taskid, @RequestParam("action") String action, ModelMap model) {
+        Task task = taskService.getTaskByTaskid(taskid);
+        model.addAttribute("task", task);
+        model.addAttribute("action", action);
+        model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+
+        return "task/EditTaskForm";
+
+    }
+
+    @RequestMapping("editTask")
+    public String editTask(@ModelAttribute("task") Task task, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "caselist/NewCaselistForm";
+//        }
+
+
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        Account account = userDetails.getAccount();
+        task.setModifier(account.getUsername());
+
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        task.setUpdatetime(timestamp);
+
+        taskService.updateTask(task);
+
+        return "redirect:all";
+    }
+
+
+
+
+
+
 
 
 }

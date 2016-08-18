@@ -21,6 +21,8 @@ public class TaskService {
 
     public List<Task> getAllTask() { return taskMapper.getAllTask(); }
     public List<Task> getUnpreparedTasks() { return taskMapper.getUnpreparedTasks(); }
+    public Task getTaskByTaskid(int taskid) { return taskMapper.getTaskByTaskid(taskid);
+    }
 
 
     @Transactional
