@@ -2,6 +2,7 @@ package com.youzan.pfcase.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by sunjun on 16/8/12.
@@ -32,9 +33,9 @@ public class Caselist implements Serializable {
 
     private String modifier;
 
-    private Date createtime;
+    private Timestamp createtime;
 
-    private Date updatetime;
+    private Timestamp updatetime;
 
     public int getCaseid() {
         return caseid;
@@ -126,19 +127,19 @@ public class Caselist implements Serializable {
         this.modifier = modifier;
     }
 
-    public Date getCreatetime() {
+    public Timestamp getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(Timestamp createtime) {
         this.createtime = createtime;
     }
 
-    public Date getUpdatetime() {
+    public Timestamp getUpdatetime() {
         return updatetime;
     }
 
-    public void setUpdatetime(Date updatetime) {
+    public void setUpdatetime(Timestamp updatetime) {
         this.updatetime = updatetime;
     }
 

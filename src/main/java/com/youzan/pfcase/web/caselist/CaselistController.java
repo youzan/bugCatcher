@@ -12,12 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
+import java.sql.Timestamp;
 
 /**
  * Created by sunjun on 16/8/12.
@@ -65,7 +64,7 @@ public class CaselistController {
     }
 
     @RequestMapping("newCaselist")
-    public String newAccount(CaselistForm form, BindingResult result) {
+    public String newCaselist(CaselistForm form, BindingResult result) {
         if (result.hasErrors()) {
             return "caselist/NewCaselistForm";
         }
@@ -75,20 +74,53 @@ public class CaselistController {
         Account account = userDetails.getAccount();
         caselist.setCreator(account.getUsername());
         caselist.setModifier(account.getUsername());
-//        Date date = new Date();
-//        caselist.setCreatetime(date);
-//        caselist.setUpdatetime(date);
 
         caselistService.insertCaselist(caselist);
 
         return "redirect:/";
     }
 
+    @RequestMapping("editCaselist")
+    public String editCaselist(@ModelAttribute("caselist") Caselist caselist, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "caselist/NewCaselistForm";
+//        }
+//        Caselist caselist = beanMapper.map(form, Caselist.class);
 
 
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        Account account = userDetails.getAccount();
+        caselist.setModifier(account.getUsername());
+
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        caselist.setUpdatetime(timestamp);
+
+        caselistService.updateCaselist(caselist);
+
+        return "redirect:all";
+    }
 
 
+    @RequestMapping(value = "editCaselistForm", method = RequestMethod.GET)
+    public String getCaselist(@RequestParam("caseid") int caseid, @RequestParam("action") String action, ModelMap model) {
+        Caselist caselist = caselistService.getCaselist(caseid);
+        model.addAttribute("caselist", caselist);
+        model.addAttribute("action", action);
 
+
+        return "caselist/EditCaselistForm";
+
+    }
+
+
+    @RequestMapping("delCaselist")  //post
+    public String delCaselist(@RequestParam("caseid") int caseid) {
+        caselistService.delCaselist(caseid);
+
+        return "caselist/all";
+
+    }
 
 
 

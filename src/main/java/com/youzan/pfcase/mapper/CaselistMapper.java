@@ -13,10 +13,23 @@ import java.util.List;
 public interface CaselistMapper {
     List<Caselist> getAllCaselist();
 
+    Caselist getCaselist(int caseid);
+
 
     void insertCaselist(Caselist caselist);
 
     void updateCaselist(Caselist caselist);
+
+
+
+
+
+
+    void delCaselist(int caseid);
+
+
+
+
 
 
 }

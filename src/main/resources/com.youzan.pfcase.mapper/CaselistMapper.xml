@@ -12,6 +12,13 @@
         FROM CASELIST
     </select>
 
+    <select id="getCaselist" parameterType="int" resultType="Caselist">
+        SELECT
+        *
+        FROM CASELIST
+        WHERE CASEID = ${_parameter}
+    </select>
+
 
     <insert id="insertCaselist" parameterType="Caselist">
         INSERT INTO caselist
@@ -23,9 +30,14 @@
 
     <update id="updateCaselist" parameterType="Caselist">
         UPDATE caselist SET
-        casename = ${casename}, belongmodulea = ${belongmodulea}, belongmoduleb = ${belongmoduleb}, belongmodulec = ${belongmodulec},
-        priority = ${priority}, casestep = ${casestep}, reviewed = ${reviewed}, automated = ${automated}, modifier = ${modifier}, updatetime = ${updatetime}
+        casename = "${casename}", belongmodulea = "${belongmodulea}", belongmoduleb = "${belongmoduleb}", belongmodulec = "${belongmodulec}",
+        priority = "${priority}", casestep = "${casestep}", reviewed = ${reviewed}, automated = ${automated}, modifier = "${modifier}", updatetime = "${updatetime}"
         WHERE caseid = #{caseid}
     </update>
+
+    <delete id="delCaselist" parameterType="int">
+        DELETE FROM caselist
+        WHERE caseid = #{_parameter}
+    </delete>
 
 </mapper>

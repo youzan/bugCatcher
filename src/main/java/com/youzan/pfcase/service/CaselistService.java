@@ -18,12 +18,10 @@ public class CaselistService {
     @Autowired
     private CaselistMapper caselistMapper;
 
-    public List<Caselist> getAllCaselist() {
-        return caselistMapper.getAllCaselist();
-    }
+    public List<Caselist> getAllCaselist() { return caselistMapper.getAllCaselist(); }
 
 
-
+    public Caselist getCaselist(int caseid) { return caselistMapper.getCaselist(caseid); }
 
 
 
@@ -37,5 +35,10 @@ public class CaselistService {
         caselistMapper.updateCaselist(caselist);
     }
 
+
+    @Transactional
+    public void delCaselist(int caseid) {
+        caselistMapper.delCaselist(caseid);
+    }
 
 }

@@ -26,6 +26,7 @@
                 <th><b>创建人</b></th>
                 <th><b>修改人</b></th>
                 <th><b>任务用例?</b></th>
+                <th><b>查看?</b></th>
                 <th><b>编辑?</b></th>
                 <th><b>删除?</b></th>
             </tr>
@@ -44,8 +45,9 @@
                     <td>
                         <input type = "checkbox" name = "caseids" value = "${caselist.caseid}" />
                     </td>
-                    <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}">编辑</a></td>
-                    <td><a href="${pageContext.request.contextPath}/caselist/delCaselist?caseid=${caselist.caseid}">删除</a></td>
+                    <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=get">查看</a></td>
+                    <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=edit">编辑</a></td>
+                    <td><a href="${pageContext.request.contextPath}/caselist/delCaselist?caseid=${caselist.caseid}" class="del">删除</a></td>
                 </tr>
             </c:forEach>
 
@@ -55,4 +57,34 @@
 </div>
 
 
-<%@ include file="../common/IncludeBottom.jsp"%>
+<%--<%@ include file="../common/IncludeBottom.jsp"%>--%>
+
+
+</div>
+
+
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.6/jquery.js" />"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $("a.del").click(function () {
+            var link = $(this);
+            $.ajax({
+                type: "POST",
+                url: link.attr("href"),
+                data: "",
+                contentType: "text/plain",
+                dataType: "text",
+                success: function (text) {
+                },
+                error: function (xhr) {
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+
+</body>
+</html>
