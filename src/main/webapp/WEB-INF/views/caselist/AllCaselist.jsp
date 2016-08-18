@@ -37,7 +37,7 @@
                 <th><b>删除?</b></th>
             </tr>
             <c:forEach var="caselist" items="${allCaselist}">
-                <tr>
+                <tr id="case_${caselist.caseid}">
                     <td>${caselist.caseid}</td>
                     <td>${caselist.casename}</td>
                     <td>${caselist.belongmodulea}</td>
@@ -78,10 +78,10 @@
                 type: "POST",
                 url:"${pageContext.request.contextPath}/caselist/delCaselist",
                 data: {
-                    id: link.data("id")
+                    caseid: link.data("id")
                 },
                 success: function (resp) {
-
+                    $("#case_" + resp).remove();
                 },
                 error: function (xhr) {
                 }

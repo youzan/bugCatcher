@@ -11,10 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -141,6 +138,15 @@ public class TaskController {
 
 
 
+//TODO:删除改为deleted标记
+    //删除task
+    @RequestMapping("delTask")
+    @ResponseBody
+    public String delTask(@RequestParam("taskid") int taskid) {
+        taskService.delTask(taskid);
+
+        return Integer.toString(taskid);
+    }
 
 
 }

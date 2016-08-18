@@ -136,16 +136,14 @@ public class CaselistController {
 
 
 
-
-
-
+//TODO:删除改为deleted标记
     //删除case
-    @RequestMapping("delCaselist")  //post
+    @RequestMapping("delCaselist")
+    @ResponseBody
     public String delCaselist(@RequestParam("caseid") int caseid) {
         caselistService.delCaselist(caseid);
 
-        return "caselist/all";
-
+        return Integer.toString(caseid);
     }
 
 

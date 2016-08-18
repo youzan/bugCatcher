@@ -23,4 +23,9 @@ public interface TaskMapper {
 
 
     void updateTaskPrepared(int taskid);
+
+
+    void delTask(int taskid);
+
+
 }

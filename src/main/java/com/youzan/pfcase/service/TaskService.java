@@ -39,4 +39,9 @@ public class TaskService {
     public void updateTaskPrepared(int taskid) {
         taskMapper.updateTaskPrepared(taskid);
     }
+
+
+    public void delTask(int taskid) {
+        taskMapper.delTask(taskid);
+    }
 }

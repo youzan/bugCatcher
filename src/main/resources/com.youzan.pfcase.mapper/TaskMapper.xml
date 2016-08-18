@@ -47,6 +47,10 @@
         WHERE taskid = #{_parameter}
     </update>
 
+    <delete id="delTask" parameterType="int">
+        DELETE FROM task
+        WHERE taskid = #{_parameter}
+    </delete>
 </mapper>
 
 
