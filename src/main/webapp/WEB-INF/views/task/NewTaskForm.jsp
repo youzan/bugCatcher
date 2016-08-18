@@ -13,10 +13,15 @@
     </tr>
 
 
-    <%-- TODO:owner从account表查询, role='kf' --%>
     <tr>
       <td>任务执行人:</td>
-      <td><form:input path="owner" /></td>
+      <td>
+        <form:select path="owner">
+          <c:forEach var="KFAccount" items="${KFAccounts}">
+            <form:option value="${KFAccount.username}">${KFAccount.username}</form:option>
+          </c:forEach>
+        </form:select>
+      </td>
     </tr>
 
 

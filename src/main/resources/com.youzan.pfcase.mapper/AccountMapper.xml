@@ -17,6 +17,17 @@
         AND SIGNON.USERNAME = ACCOUNT.USERID
     </select>
 
+    <select id="getAllKFAccount" resultType="Account">
+        SELECT
+        SIGNON.USERNAME,
+        SIGNON.PASSWORD,
+        ACCOUNT.EMAIL,
+        ACCOUNT.ROLE
+        FROM ACCOUNT, SIGNON
+        WHERE ACCOUNT.role = "kf"
+        AND SIGNON.USERNAME = ACCOUNT.USERID
+    </select>
+
     <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
         SELECT
         SIGNON.USERNAME,

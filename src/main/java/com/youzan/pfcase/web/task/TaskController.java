@@ -3,6 +3,7 @@ package com.youzan.pfcase.web.task;
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.Task;
 import com.youzan.pfcase.domain.UserDetails;
+import com.youzan.pfcase.service.AccountService;
 import com.youzan.pfcase.service.TaskService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class TaskController {
     protected Mapper beanMapper;
 
     @Autowired
+    protected AccountService accountService;
+
+    @Autowired
     protected TaskService taskService;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,7 +48,9 @@ public class TaskController {
 
 
     @RequestMapping("newTaskForm")
-    public String newTaskForm() {
+    public String newTaskForm(ModelMap model) {
+        model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+
         return "task/NewTaskForm";
     }
 
