@@ -12,6 +12,13 @@
         FROM TASK
     </select>
 
+    <select id="getUnpreparedTasks" resultType="Task">
+        SELECT
+        *
+        FROM TASK
+        WHERE TASK.prepared=0
+    </select>
+
 
     <insert id="insertTask" parameterType="Task">
         INSERT INTO TASK
@@ -25,6 +32,12 @@
         UPDATE TASK SET
         taskname = ${taskname}, owner = ${owner}, modifier = ${modifier}, updatetime = ${updatetime}
         WHERE taskid = #{taskid}
+    </update>
+
+    <update id="updateTaskPrepared" parameterType="int">
+        UPDATE TASK SET
+        prepared = 1
+        WHERE taskid = #{_parameter}
     </update>
 
 </mapper>

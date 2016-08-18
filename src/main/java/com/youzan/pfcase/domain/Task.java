@@ -14,6 +14,8 @@ public class Task implements Serializable {
 
     private String taskname;
 
+    private boolean prepared;
+
     private String owner;
 
     private boolean taskdone;
@@ -42,6 +44,14 @@ public class Task implements Serializable {
 
     public void setTaskname(String taskname) {
         this.taskname = taskname;
+    }
+
+    public boolean getPrepared() {
+        return prepared;
+    }
+
+    public void setPrepared(boolean prepared) {
+        this.prepared = prepared;
     }
 
     public String getOwner() {

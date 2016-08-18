@@ -36,6 +36,7 @@ create table caselist (
 create table task (
     taskid int not null auto_increment,
     taskname varchar(25) not null comment '任务名称',
+    prepared TINYINT not null DEFAULT 0 comment '用例已分配?',
     owner varchar(25) not null comment '任务执行人',
     taskdone TINYINT not null DEFAULT 0 comment '全部用例已执行完成?(auto generated)',
     taskscore TINYINT not null DEFAULT 0 comment '任务执行质量平均分(auto generated)',

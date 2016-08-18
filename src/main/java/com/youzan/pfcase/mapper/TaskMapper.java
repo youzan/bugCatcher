@@ -13,9 +13,13 @@ import java.util.List;
 public interface TaskMapper {
 
     List<Task> getAllTask();
+    List<Task> getUnpreparedTasks();
 
 
     void insertTask(Task task);
 
     void updateTask(Task task);
+
+
+    void updateTaskPrepared(int taskid);
 }

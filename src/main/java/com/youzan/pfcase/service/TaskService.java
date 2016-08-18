@@ -19,9 +19,8 @@ public class TaskService {
     @Autowired
     private TaskMapper taskMapper;
 
-    public List<Task> getAllTask() {
-        return taskMapper.getAllTask();
-    }
+    public List<Task> getAllTask() { return taskMapper.getAllTask(); }
+    public List<Task> getUnpreparedTasks() { return taskMapper.getUnpreparedTasks(); }
 
 
     @Transactional
@@ -34,5 +33,8 @@ public class TaskService {
         taskMapper.updateTask(task);
     }
 
-
+    @Transactional
+    public void updateTaskPrepared(int taskid) {
+        taskMapper.updateTaskPrepared(taskid);
+    }
 }

@@ -5,6 +5,7 @@ import com.youzan.pfcase.domain.Caselist;
 import com.youzan.pfcase.domain.Taskcases;
 import com.youzan.pfcase.domain.UserDetails;
 import com.youzan.pfcase.service.CaselistService;
+import com.youzan.pfcase.service.TaskService;
 import com.youzan.pfcase.service.TaskcaseService;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class CaselistController {
     @Autowired
     protected TaskcaseService taskcaseService;
 
+    @Autowired
+    protected TaskService taskService;
+
     @ModelAttribute
     public CaselistForm setUpForm() { return new CaselistForm(); }
 
@@ -44,6 +48,7 @@ public class CaselistController {
 
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public String getAllCaselist(@ModelAttribute("taskcases") Taskcases taskcases, ModelMap model) {
+        model.addAttribute("unpreparedTasks", taskService.getUnpreparedTasks());
         model.addAttribute("allCaselist", caselistService.getAllCaselist());
 
         return "caselist/AllCaselist";

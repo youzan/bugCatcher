@@ -8,7 +8,13 @@
         <table>
             <tr>
                 <td>任务id:</td>
-                <td><form:input path="taskid" /></td>
+                <td>
+                    <form:select path="taskid">
+                        <c:forEach var="unpreparedTask" items="${unpreparedTasks}">
+                            <form:option value="${unpreparedTask.taskid}">${unpreparedTask.taskname}</form:option>
+                        </c:forEach>
+                    </form:select>
+                </td>
             </tr>
         </table>
 
