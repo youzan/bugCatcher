@@ -55,6 +55,7 @@ create table taskcase (
     taskid int not null DEFAULT 0 comment '任务id',
     caseid int not null comment '用例id',
     casedone TINYINT not null DEFAULT 0 comment '某用例已执行完成?',
+    evaluated TINYINT not null DEFAULT 0 comment '某用例已评分?',
     casescore TINYINT not null DEFAULT 0 comment '用例执行质量评分',
     bugurl varchar(255) not null DEFAULT '' comment 'Bug URL',
 

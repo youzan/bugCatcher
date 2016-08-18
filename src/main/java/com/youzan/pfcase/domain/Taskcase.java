@@ -15,6 +15,8 @@ public class Taskcase implements Serializable {
 
     private boolean casedone;
 
+    private boolean evaluated;
+
     private boolean casescore;
 
     private String bugurl;
@@ -41,6 +43,14 @@ public class Taskcase implements Serializable {
 
     public void setCasedone(boolean casedone) {
         this.casedone = casedone;
+    }
+
+    public boolean getEvaluated() {
+        return evaluated;
+    }
+
+    public void setEvaluated(boolean evaluated) {
+        this.evaluated = evaluated;
     }
 
     public boolean getCasescore() {
