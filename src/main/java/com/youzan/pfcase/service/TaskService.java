@@ -40,6 +40,10 @@ public class TaskService {
         taskMapper.updateTaskPrepared(taskid);
     }
 
+    public void updateTaskscore(int taskid, int taskscore) {
+        taskMapper.updateTaskscore(taskid, taskscore);
+    }
+
 
     public void delTask(int taskid) {
         taskMapper.delTask(taskid);

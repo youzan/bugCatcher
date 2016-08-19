@@ -47,6 +47,12 @@
         WHERE taskid = #{_parameter}
     </update>
 
+    <update id="updateTaskscore" parameterType="map">
+        UPDATE TASK SET
+        taskdone = 1, taskscore = #{taskscore}
+        WHERE taskid = #{taskid}
+    </update>
+
     <delete id="delTask" parameterType="int">
         DELETE FROM task
         WHERE taskid = #{_parameter}

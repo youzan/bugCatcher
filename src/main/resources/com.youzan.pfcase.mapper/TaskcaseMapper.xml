@@ -13,6 +13,30 @@
         FROM TASKCASE
     </select>
 
+    <select id="getTaskCount" parameterType="map" resultType="Integer">
+        SELECT
+        COUNT(*)
+        FROM TASKCASE
+        WHERE TASKID = #{taskid}
+    </select>
+
+    <select id="getTaskDoneCount" parameterType="map" resultType="Integer">
+        SELECT
+        COUNT(*)
+        FROM TASKCASE
+        WHERE TASKID = #{taskid}
+        AND EVALUATED = 1
+    </select>
+
+    <select id="getTaskGoodResultCount" parameterType="map" resultType="Integer">
+        SELECT
+        COUNT(*)
+        FROM TASKCASE
+        WHERE TASKID = #{taskid}
+        AND EVALUATED = 1
+        AND CASESCORE = 1
+    </select>
+
 
     <insert id="insertCaseids" parameterType="java.util.List">
         INSERT INTO taskcase
@@ -30,6 +54,34 @@
         WHERE TASKID = 0
     </update>
 
+
+    <update id="updateCasedone" parameterType="map">
+        UPDATE taskcase
+        SET casedone = 1
+        WHERE TASKID = #{taskid}
+        AND CASEID = #{caseid}
+    </update>
+
+    <update id="updateGoodCasescore" parameterType="map">
+        UPDATE taskcase
+        SET evaluated = 1, casescore = 1
+        WHERE TASKID = #{taskid}
+        AND CASEID = #{caseid}
+    </update>
+
+    <update id="updateBadCasescore" parameterType="map">
+        UPDATE taskcase
+        SET evaluated = 1
+        WHERE TASKID = #{taskid}
+        AND CASEID = #{caseid}
+    </update>
+
+    <update id="updateBugurl" parameterType="map">
+        UPDATE taskcase
+        SET bugurl = #{bugurl}
+        WHERE TASKID = #{taskid}
+        AND CASEID = #{caseid}
+    </update>
 
 
 </mapper>
