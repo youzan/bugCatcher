@@ -17,6 +17,10 @@
             <br />
             密码: <input type='password' name='j_password' value="j" />
         </p>
+
+        <input id="remember_me" name="remember-me" type="checkbox"/>
+        <label for="remember_me" class="inline">记住我</label>
+
         <input name="submit" type="submit" value="登录" />
     </form>
 

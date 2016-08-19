@@ -19,6 +19,9 @@
                     logout-url="/account/signoff"
                     logout-success-url="/" />
 
+        <sec:remember-me key="uniqueAndSecret" token-validity-seconds="2419200"/>
+
+        <!--TODO:intercept-url-->
         <sec:intercept-url pattern="/account/editAccount*" access="isAuthenticated()" />
         <sec:intercept-url pattern="/order/**" access="isAuthenticated()" />
     </sec:http>
