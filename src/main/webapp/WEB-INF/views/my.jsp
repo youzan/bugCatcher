@@ -42,8 +42,8 @@
                 <c:forEach items="${taskcaseMap.get(taskEntry.key)}" var="taskcase">
                     <c:set var="caseid">${taskcase.getCaseid()}</c:set>
                     <tr>
-                        <td>${taskcase.getCaseid()}</td>
-                        <td>${caselistMap.get(caseid).casename}</td>
+                        <td>${caseid}</td>
+                        <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
                         <td>${taskcase.getCasedone()}</td>
                         <td>${taskcase.getEvaluated()}</td>
                         <td>${taskcase.getCasescore()}</td>
