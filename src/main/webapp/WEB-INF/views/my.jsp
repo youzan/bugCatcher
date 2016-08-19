@@ -29,28 +29,30 @@
             </tr>
         </table>
 
-        <%--TODO:根据任务prepared状态决定是否显示这个Table--%>
-        <table>
-            <tr>
-                <th><b>用例id</b></th>
-                <th><b>用例名称</b></th>
-                <th><b>已执行</b></th>
-                <th><b>已评分</b></th>
-                <th><b>评分</b></th>
-                <th><b>bug链接</b></th>
-            </tr>
-            <c:forEach items="${taskcaseMap.get(taskEntry.key)}" var="taskcase">
-                <c:set var="caseid">${taskcase.getCaseid()}</c:set>
+        <c:if test="${taskEntry.value.prepared == true}">
+            <table>
                 <tr>
-                    <td>${taskcase.getCaseid()}</td>
-                    <td>${caselistMap.get(caseid).casename}</td>
-                    <td>${taskcase.getCasedone()}</td>
-                    <td>${taskcase.getEvaluated()}</td>
-                    <td>${taskcase.getCasescore()}</td>
-                    <td>${taskcase.getBugurl()}</td>
+                    <th><b>用例id</b></th>
+                    <th><b>用例名称</b></th>
+                    <th><b>已执行</b></th>
+                    <th><b>已评分</b></th>
+                    <th><b>评分</b></th>
+                    <th><b>bug链接</b></th>
                 </tr>
-            </c:forEach>
-        </table>
+                <c:forEach items="${taskcaseMap.get(taskEntry.key)}" var="taskcase">
+                    <c:set var="caseid">${taskcase.getCaseid()}</c:set>
+                    <tr>
+                        <td>${taskcase.getCaseid()}</td>
+                        <td>${caselistMap.get(caseid).casename}</td>
+                        <td>${taskcase.getCasedone()}</td>
+                        <td>${taskcase.getEvaluated()}</td>
+                        <td>${taskcase.getCasescore()}</td>
+                        <td>${taskcase.getBugurl()}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </c:if>
+
 
 
 
