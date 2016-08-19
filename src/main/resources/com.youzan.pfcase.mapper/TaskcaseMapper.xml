@@ -7,6 +7,13 @@
     <cache />
 
 
+    <select id="getAllTaskcase" resultType="Taskcase">
+        SELECT
+        *
+        FROM TASKCASE
+    </select>
+
+
     <insert id="insertCaseids" parameterType="java.util.List">
         INSERT INTO taskcase
         (caseid)

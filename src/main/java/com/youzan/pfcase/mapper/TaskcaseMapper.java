@@ -1,6 +1,7 @@
 package com.youzan.pfcase.mapper;
 
 import com.youzan.pfcase.domain.Caselist;
+import com.youzan.pfcase.domain.Taskcase;
 import com.youzan.pfcase.domain.Taskcases;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,8 @@ import java.util.List;
  */
 @Repository
 public interface TaskcaseMapper {
+
+    List<Taskcase> getAllTaskcase();
 
     void insertCaseids(List<Integer> caseids);
 

@@ -1,6 +1,7 @@
 package com.youzan.pfcase.service;
 
 import com.youzan.pfcase.domain.Caselist;
+import com.youzan.pfcase.domain.Taskcase;
 import com.youzan.pfcase.domain.Taskcases;
 import com.youzan.pfcase.mapper.CaselistMapper;
 import com.youzan.pfcase.mapper.TaskMapper;
@@ -22,6 +23,9 @@ public class TaskcaseService {
 
     @Autowired
     private TaskMapper taskMapper;
+
+    public List<Taskcase> getAllTaskcase() { return taskcaseMapper.getAllTaskcase(); }
+
 
 
     @Transactional
