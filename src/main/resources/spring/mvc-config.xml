@@ -20,9 +20,10 @@
     <context:component-scan base-package="com.youzan.pfcase.web" />
 
 
+    <mvc:resources mapping="/js/**" location="/resources/js/" cache-period="#{60 * 60}" />
     <mvc:resources mapping="/css/**" location="/resources/css/" cache-period="#{60 * 60}" />
     <mvc:resources mapping="/images/**" location="/resources/images/" cache-period="#{60 * 60}" />
-    <mvc:resources mapping="/jquery/**" location="/resources/jquery/" cache-period="#{60 * 60}" />
+    <mvc:resources mapping="/jquery/**" location="/resources/vendor/jquery/" cache-period="#{60 * 60}" />
     <!--<mvc:default-servlet-handler />-->
 
 
