@@ -4,40 +4,70 @@
 <div>
 
     <c:forEach items="${taskMap}" var="taskEntry">
-        <h3>任务id: ${taskEntry.key}</h3>
+        <%--<h3>任务id: ${taskEntry.key}</h3>--%>
 
 
-        <table>
-            <tr>
-                <th><b>任务名称</b></th>
-                <th><b>用例已分配?</b></th>
-                <th><b>执行人</b></th>
-                <th><b>任务已完成?</b></th>
-                <th><b>任务评分</b></th>
-                <th><b>创建人</b></th>
-                <th><b>修改人</b></th>
-            </tr>
-            <tr>
-                <td>${taskEntry.value.taskname}</td>
-                <td>${taskEntry.value.prepared}</td>
-                <td>${taskEntry.value.owner}</td>
-                <td>${taskEntry.value.taskdone}</td>
-                <td>${taskEntry.value.taskscore}</td>
-                <td>${taskEntry.value.creator}</td>
-                <td>${taskEntry.value.modifier}</td>
+        <%--<table class="table table-hover">--%>
+            <%--<tr>--%>
+                <%--<th><b>任务名称</b></th>--%>
+                <%--<th><b>用例已分配?</b></th>--%>
+                <%--<th><b>执行人</b></th>--%>
+                <%--<th><b>任务已完成?</b></th>--%>
+                <%--<th><b>任务评分</b></th>--%>
+                <%--<th><b>创建人</b></th>--%>
+                <%--<th><b>修改人</b></th>--%>
+            <%--</tr>--%>
+            <%--<tr>--%>
+                <%--<td>${taskEntry.value.taskname}</td>--%>
+                <%--<td>${taskEntry.value.prepared}</td>--%>
+                <%--<td>${taskEntry.value.owner}</td>--%>
+                <%--<td>${taskEntry.value.taskdone}</td>--%>
+                <%--<td>${taskEntry.value.taskscore}</td>--%>
+                <%--<td>${taskEntry.value.creator}</td>--%>
+                <%--<td>${taskEntry.value.modifier}</td>--%>
 
-            </tr>
-        </table>
+            <%--</tr>--%>
+        <%--</table>--%>
+
+
+        <h3>${taskEntry.value.taskname}</h3>
+
+        <dl class="dl-horizontal">
+            <dt>任务id</dt>
+            <dd>${taskEntry.key}</dd>
+            <%--<dt>任务名称</dt>--%>
+            <%--<dd>${taskEntry.value.taskname}</dd>--%>
+            <dt>用例已分配?</dt>
+            <dd>${taskEntry.value.prepared}</dd>
+            <dt>执行人</dt>
+            <dd>${taskEntry.value.owner}</dd>
+            <dt>任务已完成?</dt>
+            <dd>${taskEntry.value.taskdone}</dd>
+            <dt>任务评分</dt>
+            <dd>${taskEntry.value.taskscore}</dd>
+            <dt>创建人</dt>
+            <dd>${taskEntry.value.creator}</dd>
+            <dt>修改人</dt>
+            <dd>${taskEntry.value.modifier}</dd>
+        </dl>
+
+
+
+
+
+
+
+
 
         <c:if test="${taskEntry.value.prepared == true}">
-            <table>
+            <table class="table table-hover">
                 <tr>
                     <th><b>用例id</b></th>
                     <th><b>用例名称</b></th>
                     <th><b>已执行</b></th>
                     <%--<th><b>已评分</b></th>--%>
                     <th><b>执行质量</b></th>
-                    <th><b>bug链接</b></th>
+                    <th class="text-center"><b>bug链接</b></th>
                 </tr>
                 <c:forEach items="${taskcaseMap.get(taskEntry.key)}" var="taskcase">
                     <c:set var="caseid">${taskcase.getCaseid()}</c:set>
@@ -67,7 +97,7 @@
                             </c:choose>
                         </td>
 
-                        <td>
+                        <td class="text-center">
                             <c:choose>
                                 <c:when test="${not empty taskcase.getBugurl()}">
                                     <a href="${taskcase.getBugurl()}"><img src="/images/bug.png" /></a>
