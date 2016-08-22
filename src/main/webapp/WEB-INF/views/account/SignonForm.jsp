@@ -25,6 +25,7 @@
                         </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+                    <div class="register">新用户? <a href="/account/newAccountForm">立即注册!</a></div>
                 </form>
             </div> <!-- /container -->
     </div>
