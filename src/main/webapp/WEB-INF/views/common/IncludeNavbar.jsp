@@ -11,12 +11,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/">捉虫记</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/my">捉虫记</a>
       <img id="Brand" alt="Brand" src="/images/capture_bug.png" style="height: 50px; width: 50px;">
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li <c:if test="${active_my == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/">我的任务</a></li>
+        <li <c:if test="${active_my == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/my">我的任务</a></li>
         <li <c:if test="${active_newTask == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/newTaskForm">新建任务</a></li>
         <li <c:if test="${active_newCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/newCaselistForm">新建用例</a></li>
         <li <c:if test="${active_allCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/all">查看用例</a></li>
@@ -26,11 +26,6 @@
           <sec:authentication property="principal.account" var="account" />
           <li><a href="#">${account.username}</a></li>
           <li><a href="${pageContext.request.contextPath}/account/signoff">退出</a></li>
-        </sec:authorize>
-
-        <sec:authorize access="!isAuthenticated()">
-          <li><a href="${pageContext.request.contextPath}/account/signonForm">登录</a></li>
-          <li><a href="${pageContext.request.contextPath}/account/newAccountForm">注册</a></li>
         </sec:authorize>
       </ul>
     </div><!--/.nav-collapse -->

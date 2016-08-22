@@ -1,7 +1,9 @@
 <%@ include file="../common/IncludeHead.jsp"%>
             <link href="../css/signin.css" rel="stylesheet">
-<%@ include file="../common/IncludeNavbar.jsp"%>
+<%--<%@ include file="../common/IncludeNavbar.jsp"%>--%>
+</head>
 
+<body>
 <div id="Content">
         <div id="Catalog">
             <c:if test="${not empty param.error}">

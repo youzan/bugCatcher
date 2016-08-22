@@ -13,6 +13,7 @@
     <sec:http auto-config="true" use-expressions="true">
         <sec:form-login login-page="/account/signonForm"
                         login-processing-url="/account/signon"
+                        default-target-url="/my"
                         authentication-failure-url="/account/signonForm?error=true" />
 
         <sec:logout delete-cookies="JSESSIONID"

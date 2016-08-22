@@ -36,7 +36,7 @@ public class MyController {
 	@Autowired
 	protected CaselistService caselistService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "my", method = RequestMethod.GET)
 	public String my(ModelMap model) throws Exception {
 //		Account account = accountService.getAccount("admin");
 //		model.addAttribute("message", account.getPassword());
