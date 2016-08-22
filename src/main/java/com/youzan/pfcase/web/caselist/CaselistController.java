@@ -51,6 +51,8 @@ public class CaselistController {
         model.addAttribute("unpreparedTasks", taskService.getUnpreparedTasks());
         model.addAttribute("allCaselist", caselistService.getAllCaselist());
 
+        model.addAttribute("active_allCase", true);
+
         return "caselist/AllCaselist";
     }
 
@@ -69,7 +71,8 @@ public class CaselistController {
 
     //新建case
     @RequestMapping("newCaselistForm")
-    public String newCaselistForm() {
+    public String newCaselistForm(ModelMap model) {
+        model.addAttribute("active_newCase", true);
         return "caselist/NewCaselistForm";
     }
 

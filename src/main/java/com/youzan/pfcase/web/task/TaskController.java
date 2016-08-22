@@ -45,7 +45,7 @@ public class TaskController {
 
 
 
-
+//这个RequestMapping已经不需要了,可以删除
     //查看所有任务
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public String getAllTask(ModelMap model) {
@@ -66,6 +66,7 @@ public class TaskController {
     @RequestMapping("newTaskForm")
     public String newTaskForm(ModelMap model) {
         model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+        model.addAttribute("active_newTask", true);
 
         return "task/NewTaskForm";
     }

@@ -1,6 +1,7 @@
-<%@ include file="../common/IncludeTop.jsp"%>
+<%@ include file="../common/IncludeHead.jsp"%>
+<%@ include file="../common/IncludeNavbar.jsp"%>
 
-
+<div id="Content">
     <div id="Catalog">
         <form:form modelAttribute="accountForm"
                    action="${pageContext.request.contextPath}/account/newAccount">
@@ -36,9 +37,8 @@
                    value="立即注册" />
         </form:form>
     </div>
+</div>
 
-
-
-
-
-<%@ include file="../common/IncludeBottom.jsp"%>
+<%@ include file="../common/IncludeJsVendor.jsp"%>
+</body>
+</html>

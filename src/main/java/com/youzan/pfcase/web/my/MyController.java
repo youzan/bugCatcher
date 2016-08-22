@@ -90,6 +90,9 @@ public class MyController {
 		model.addAttribute("caselistMap", caselistMap);
 
 
+		model.addAttribute("active_my", true);
+
+
 
 
 
