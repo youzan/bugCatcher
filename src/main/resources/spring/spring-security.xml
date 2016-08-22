@@ -22,9 +22,10 @@
 
         <sec:remember-me key="uniqueAndSecret" token-validity-seconds="2419200"/>
 
-        <!--TODO:intercept-url-->
-        <sec:intercept-url pattern="/account/editAccount*" access="isAuthenticated()" />
-        <sec:intercept-url pattern="/order/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/my/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/task/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/taskcase/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/caselist/**" access="isAuthenticated()" />
     </sec:http>
 
 
