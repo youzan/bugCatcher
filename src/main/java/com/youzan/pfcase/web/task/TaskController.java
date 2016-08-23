@@ -88,7 +88,7 @@ public class TaskController {
 
         taskService.insertTask(task);
 
-        return "redirect:/";
+        return "redirect:/my";
     }
 
 

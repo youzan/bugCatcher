@@ -45,7 +45,7 @@ public class CaselistController {
 
 
 
-    //为某任务分配用例
+    //1. 查看所有用例 2. 为某任务分配用例
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public String getAllCaselist(@ModelAttribute("taskcases") Taskcases taskcases, ModelMap model) {
         model.addAttribute("unpreparedTasks", taskService.getUnpreparedTasks());
@@ -61,7 +61,7 @@ public class CaselistController {
     {
         taskcaseService.insertTaskcases(taskcases);
 
-        return "redirect:/";
+        return "redirect:/my";
     }
 
 
@@ -90,7 +90,7 @@ public class CaselistController {
 
         caselistService.insertCaselist(caselist);
 
-        return "redirect:/";
+        return "redirect:/caselist/all";
     }
 
 
