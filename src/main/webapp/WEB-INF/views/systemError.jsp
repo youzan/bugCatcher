@@ -1,7 +1,11 @@
-<%@ include file="./common/IncludeTop.jsp"%>
+<%@ include file="common/IncludeHead.jsp"%>
+</head>
 
-<h2>System Error...</h2>
-<p>
-  <a href="${pageContext.request.contextPath}/catalog/">Go to TOP</a>
-</p>
-<%@ include file="./common/IncludeBottom.jsp"%>
+<body>
+  <h2>System Error...</h2>
+  <p>
+    <a href="${pageContext.request.contextPath}/catalog/">Go to TOP</a>
+  </p>
+  <%@ include file="common/IncludeJsVendor.jsp"%>
+</body>
+</html>

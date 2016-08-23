@@ -72,7 +72,7 @@ public class TaskcaseController {
     }
 
 
-    //执行了case
+    //评分 bad
     @RequestMapping("badcasescore")
     @ResponseBody
     public String badCasescore(@RequestParam("taskid") int taskid, @RequestParam("caseid") int caseid) {
@@ -96,7 +96,7 @@ public class TaskcaseController {
     }
 
 
-    //执行了case
+    //添加 bugurl
     @RequestMapping("bugurl")
     @ResponseBody
     public String badCasescore(@RequestParam("taskid") int taskid, @RequestParam("caseid") int caseid, @RequestParam("bugurl") String bugurl) {

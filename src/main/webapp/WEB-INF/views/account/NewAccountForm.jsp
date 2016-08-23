@@ -1,44 +1,34 @@
-<%@ include file="../common/IncludeTop.jsp"%>
+<%@ include file="../common/IncludeHead.jsp"%>
+    <link href="../css/NewAccountForm.css" rel="stylesheet">
+</head>
 
+<body>
+<div class="container">
+    <form:form class="form-newaccount" modelAttribute="accountForm"
+               action="${pageContext.request.contextPath}/account/newAccount" method="POST">
+        <h2 class="form-newaccount-heading">请入坑</h2>
+        <label for="username" class="sr-only">用户名</label>
+        <form:input path="username" id="username" name='username' class="form-control" placeholder="用户名" required="true" autofocus="true"/>
+        <label for="password" class="sr-only">密码</label>
+        <form:password path="password"  id="password" name='password' class="form-control" placeholder="密码" required="true"/>
+        <label for="repeatedPassword" class="sr-only">确认密码</label>
+        <form:password path="repeatedPassword"  id="repeatedPassword" name='repeatedPassword' class="form-control" placeholder="确认密码" required="true"/>
+        <label for="email" class="sr-only">邮箱</label>
+        <form:input size="40" path="email" id="email" name='email' class="form-control" placeholder="邮箱" required="true"/>
 
-    <div id="Catalog">
-        <form:form modelAttribute="accountForm"
-                   action="${pageContext.request.contextPath}/account/newAccount">
+        <label class="radio-inline">
+            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiocs" value="cs"/> 测试
+        </label>
+        <label class="radio-inline">
+            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiokf" value="kf"/> 开发
+        </label>
+        <label class="radio-inline">
+            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiocp" value="cp"/> 产品
+        </label>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button>
+    </form:form>
+</div> <!-- /container -->
 
-            <h3>用户注册</h3>
-
-            <table>
-                <tr>
-                    <td>用户名:</td>
-                    <td><form:input path="username" /></td>
-                </tr>
-                <tr>
-                    <td>密码:</td>
-                    <td><form:password path="password" /></td>
-                </tr>
-                <tr>
-                    <td>确认密码:</td>
-                    <td><form:password path="repeatedPassword" /></td>
-                </tr>
-                <tr>
-                    <td>邮箱:</td>
-                    <td><form:input size="40" path="email" /></td>
-                </tr>
-                <tr>
-                    <td>角色:</td>
-                    <td><form:radiobutton path="role" value="cs"/>测试</td>
-                    <td><form:radiobutton path="role" value="kf"/>开发</td>
-                    <td><form:radiobutton path="role" value="cp"/>产品</td>
-                </tr>
-            </table>
-
-            <input type="submit" name="newAccount"
-                   value="立即注册" />
-        </form:form>
-    </div>
-
-
-
-
-
-<%@ include file="../common/IncludeBottom.jsp"%>
+<%@ include file="../common/IncludeJsVendor.jsp"%>
+</body>
+</html>

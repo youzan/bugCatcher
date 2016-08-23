@@ -1,5 +1,6 @@
 package com.youzan.pfcase.service;
 
+import com.sun.tools.corba.se.idl.constExpr.Times;
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.Caselist;
 import com.youzan.pfcase.mapper.CaselistMapper;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -37,8 +39,8 @@ public class CaselistService {
 
 
     @Transactional
-    public void delCaselist(int caseid) {
-        caselistMapper.delCaselist(caseid);
+    public void delCaselist(int caseid, String modifier, Timestamp updatetime) {
+        caselistMapper.delCaselist(caseid, modifier, updatetime);
     }
 
 }

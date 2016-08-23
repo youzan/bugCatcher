@@ -44,28 +44,11 @@ public class TaskController {
 
 
 
-
-
-    //查看所有任务
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public String getAllTask(ModelMap model) {
-        model.addAttribute("allTask", taskService.getAllTask());
-
-        return "task/AllTask";
-    }
-
-
-
-
-
-
-
-
-
     //新建任务
     @RequestMapping("newTaskForm")
     public String newTaskForm(ModelMap model) {
         model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+        model.addAttribute("active_newTask", true);
 
         return "task/NewTaskForm";
     }
@@ -87,7 +70,7 @@ public class TaskController {
 
         taskService.insertTask(task);
 
-        return "redirect:/";
+        return "redirect:/my";
     }
 
 
@@ -130,7 +113,7 @@ public class TaskController {
 
         taskService.updateTask(task);
 
-        return "redirect:all";
+        return "redirect:/my";
     }
 
 
@@ -143,7 +126,13 @@ public class TaskController {
     @RequestMapping("delTask")
     @ResponseBody
     public String delTask(@RequestParam("taskid") int taskid) {
-        taskService.delTask(taskid);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        String modifier = userDetails.getAccount().getUsername();
+
+        Timestamp updatetime = new Timestamp(new Date().getTime());
+
+        taskService.delTask(taskid, modifier, updatetime);
 
         return Integer.toString(taskid);
     }

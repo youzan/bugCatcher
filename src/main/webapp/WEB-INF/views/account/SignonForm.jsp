@@ -1,32 +1,36 @@
-<%@ include file="../common/IncludeTop.jsp"%>
+<%@ include file="../common/IncludeHead.jsp"%>
+            <link href="../css/SignonForm.css" rel="stylesheet">
+<%--<%@ include file="../common/IncludeNavbar.jsp"%>--%>
+</head>
 
-<div id="Catalog">
-    <c:if test="${not empty param.error}">
-        <div class="alert alert-error">
-            <h4 class="alert-heading">登录失败!</h4>
-            ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-        </div>
-    </c:if>
-
-    <form action='${pageContext.request.contextPath}/account/signon'
-          method="POST">
-
-        <p>请输入您的用户名和密码.</p>
-        <p>
-            用户名: <input type='text' name='j_username' value='admin'>
-            <br />
-            密码: <input type='password' name='j_password' value="j" />
-        </p>
-
-        <input id="remember_me" name="remember-me" type="checkbox"/>
-        <label for="remember_me" class="inline">记住我</label>
-
-        <input name="submit" type="submit" value="登录" />
-    </form>
-
-    新用户? <a href="${pageContext.request.contextPath}/account/newAccountForm">立即注册!</a>
-
+<body>
+<div id="Content">
+        <div id="Catalog">
+            <c:if test="${not empty param.error}">
+                <div class="alert alert-error">
+                    <h4 class="alert-heading">登录失败!</h4>
+                    ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                </div>
+            </c:if>
+            <div class="container">
+                <form class="form-signin" action='${pageContext.request.contextPath}/account/signon' method="POST">
+                    <h2 class="form-signin-heading">请登录</h2>
+                    <label for="j_username" class="sr-only">用户名</label>
+                    <input type="text" id="j_username" name='j_username' class="form-control" placeholder="用户名" required autofocus>
+                    <label for="j_password" class="sr-only">密码</label>
+                    <input type="password" id="j_password" name='j_password' class="form-control" placeholder="密码" required>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="remember_me" name="remember-me" value="remember-me"> 记住我
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+                    <div class="register">新用户? <a href="/account/newAccountForm">立即注册!</a></div>
+                </form>
+            </div> <!-- /container -->
+    </div>
 </div>
 
-
-<%@ include file="../common/IncludeBottom.jsp"%>
+<%@ include file="../common/IncludeJsVendor.jsp"%>
+</body>
+</html>

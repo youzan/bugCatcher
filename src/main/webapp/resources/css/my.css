@@ -1,0 +1,38 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+[id=taskInfo] {
+    margin-bottom: 0px;
+}
+
+.panel {
+    margin-top: 50px;
+}
+
+.panel-default>.panel-heading {
+    color: #fff;
+    background: #5cb85c;
+}
+
+.dl-horizontal dt {
+    width: 100px;
+}
+
+.dl-horizontal dd {
+    margin-left: 120px;
+}
+
+input[type=checkbox] {
+    height: 32px;
+    width: 32px;
+}
+
+th,td {
+    text-align: center;
+    vertical-align: middle;
+}

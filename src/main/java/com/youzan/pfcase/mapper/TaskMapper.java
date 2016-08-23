@@ -5,6 +5,7 @@ import com.youzan.pfcase.domain.Task;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public interface TaskMapper {
     void updateTaskscore(@Param("taskid") int taskid, @Param("taskscore") int taskscore);
 
 
-    void delTask(int taskid);
+    void delTask(@Param("taskid") int taskid, @Param("modifier") String modifier, @Param("updatetime") Timestamp updatetime);
 
 
 }

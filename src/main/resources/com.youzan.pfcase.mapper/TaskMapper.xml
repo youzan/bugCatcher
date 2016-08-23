@@ -10,6 +10,8 @@
         SELECT
         *
         FROM TASK
+        WHERE not deleted=1
+        ORDER BY createtime DESC
     </select>
 
     <select id="getTaskByTaskid" parameterType="int" resultType="Task">
@@ -24,6 +26,7 @@
         *
         FROM TASK
         WHERE TASK.prepared=0
+        AND not deleted=1
     </select>
 
 
@@ -53,10 +56,16 @@
         WHERE taskid = #{taskid}
     </update>
 
-    <delete id="delTask" parameterType="int">
-        DELETE FROM task
-        WHERE taskid = #{_parameter}
-    </delete>
+    <update id="delTask" parameterType="map">
+        UPDATE TASK SET
+        deleted = 1, modifier = "${modifier}", updatetime = "${updatetime}"
+        WHERE taskid = #{taskid}
+    </update>
+
+    <!--<delete id="delTask" parameterType="int">-->
+        <!--DELETE FROM task-->
+        <!--WHERE taskid = #{_parameter}-->
+    <!--</delete>-->
 </mapper>
 
 

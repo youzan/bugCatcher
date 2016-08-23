@@ -13,6 +13,7 @@
     <sec:http auto-config="true" use-expressions="true">
         <sec:form-login login-page="/account/signonForm"
                         login-processing-url="/account/signon"
+                        default-target-url="/my"
                         authentication-failure-url="/account/signonForm?error=true" />
 
         <sec:logout delete-cookies="JSESSIONID"
@@ -21,9 +22,10 @@
 
         <sec:remember-me key="uniqueAndSecret" token-validity-seconds="2419200"/>
 
-        <!--TODO:intercept-url-->
-        <sec:intercept-url pattern="/account/editAccount*" access="isAuthenticated()" />
-        <sec:intercept-url pattern="/order/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/my/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/task/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/taskcase/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/caselist/**" access="isAuthenticated()" />
     </sec:http>
 
 

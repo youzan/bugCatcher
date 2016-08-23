@@ -45,11 +45,13 @@ public class CaselistController {
 
 
 
-    //为某任务分配用例
+    //1. 查看所有用例 2. 为某任务分配用例
     @RequestMapping(value = "all", method = RequestMethod.GET)
     public String getAllCaselist(@ModelAttribute("taskcases") Taskcases taskcases, ModelMap model) {
         model.addAttribute("unpreparedTasks", taskService.getUnpreparedTasks());
         model.addAttribute("allCaselist", caselistService.getAllCaselist());
+
+        model.addAttribute("active_allCase", true);
 
         return "caselist/AllCaselist";
     }
@@ -59,7 +61,7 @@ public class CaselistController {
     {
         taskcaseService.insertTaskcases(taskcases);
 
-        return "redirect:/";
+        return "redirect:/my";
     }
 
 
@@ -69,7 +71,8 @@ public class CaselistController {
 
     //新建case
     @RequestMapping("newCaselistForm")
-    public String newCaselistForm() {
+    public String newCaselistForm(ModelMap model) {
+        model.addAttribute("active_newCase", true);
         return "caselist/NewCaselistForm";
     }
 
@@ -87,7 +90,7 @@ public class CaselistController {
 
         caselistService.insertCaselist(caselist);
 
-        return "redirect:/";
+        return "redirect:/caselist/all";
     }
 
 
@@ -141,7 +144,13 @@ public class CaselistController {
     @RequestMapping("delCaselist")
     @ResponseBody
     public String delCaselist(@RequestParam("caseid") int caseid) {
-        caselistService.delCaselist(caseid);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        String modifier = userDetails.getAccount().getUsername();
+
+        Timestamp updatetime = new Timestamp(new Date().getTime());
+
+        caselistService.delCaselist(caseid, modifier, updatetime);
 
         return Integer.toString(caseid);
     }
