@@ -119,9 +119,6 @@ public class TaskController {
 
 
 
-
-
-//TODO:删除改为deleted标记
     //删除task
     @RequestMapping("delTask")
     @ResponseBody
@@ -135,6 +132,16 @@ public class TaskController {
         taskService.delTask(taskid, modifier, updatetime);
 
         return Integer.toString(taskid);
+    }
+
+
+
+    //
+    @RequestMapping("taskscore")
+    @ResponseBody
+    public String getTaskscore(@RequestParam("taskid") int taskid) {
+        int taskscore = taskService.getTaskscore(taskid);
+        return Integer.toString(taskscore);
     }
 
 

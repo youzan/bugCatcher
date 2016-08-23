@@ -29,6 +29,12 @@
         AND not deleted=1
     </select>
 
+    <select id="getTaskscore" parameterType="map" resultType="Integer">
+        SELECT
+        taskscore
+        FROM TASK
+        WHERE TASKID = #{taskid}
+    </select>
 
     <insert id="insertTask" parameterType="Task">
         INSERT INTO TASK

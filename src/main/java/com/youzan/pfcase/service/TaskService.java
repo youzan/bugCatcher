@@ -25,6 +25,9 @@ public class TaskService {
     public Task getTaskByTaskid(int taskid) { return taskMapper.getTaskByTaskid(taskid);
     }
 
+    public int getTaskscore(int taskid) { return taskMapper.getTaskscore(taskid);
+    }
+
 
     @Transactional
     public void insertTask(Task task) {

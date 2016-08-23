@@ -17,6 +17,7 @@ public interface TaskMapper {
     List<Task> getAllTask();
     List<Task> getUnpreparedTasks();
     Task getTaskByTaskid(int taskid);
+    int getTaskscore(@Param("taskid") int taskid);
 
 
     void insertTask(Task task);

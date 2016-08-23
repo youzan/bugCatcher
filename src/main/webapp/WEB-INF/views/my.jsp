@@ -29,13 +29,13 @@
                         </c:if>
                         <dt>任务已完成?</dt>
                         <c:if test="${taskEntry.value.taskdone == true}">
-                            <dd>YES</dd>
+                            <dd id="taskdone_${taskEntry.key}">YES</dd>
                         </c:if>
                         <c:if test="${taskEntry.value.taskdone == false}">
-                            <dd>NO</dd>
+                            <dd id="taskdone_${taskEntry.key}">NO</dd>
                         </c:if>
                         <dt>任务评分</dt>
-                        <dd>${taskEntry.value.taskscore}</dd>
+                        <dd id="taskscore_${taskEntry.key}">${taskEntry.value.taskscore}</dd>
                         <dt>创建人</dt>
                         <dd>${taskEntry.value.creator}</dd>
                         <dt>修改人</dt>
@@ -148,20 +148,30 @@
                         caseid: caseid
                     },
                     success: function (resp) {
-//                        console.log("###", "#casescore_" + resp);
                         var img = '<img class="img_' + taskid + '" src="/images/good.png" />'
                         $("#casescore_" + resp).html('');
                         $("#casescore_" + resp).append(img);
 
-
                         if ($("#task_" + taskid + " .img_" + taskid).length === $("#casescore_" + resp).parent().siblings().size()) {
-                            console.log("改修改了!!!")
-
+                            $.ajax({
+                                type: "POST",
+                                url:"${pageContext.request.contextPath}/task/taskscore",
+                                data: {
+                                    taskid: taskid
+                                },
+                                success: function (resp) {
+                                    $("#taskdone_" + taskid).html("YES");
+                                    $("#taskscore_" + taskid).html(resp);
+                                },
+                                error: function (xhr) {
+                                }
+                            });
                         }
                     },
                     error: function (xhr) {
                     }
                 });
+
                 return false;
             });
 
@@ -180,13 +190,22 @@
                         var img = '<img class="img_' + taskid + '" src="/images/bad.png" />'
                         $("#casescore_" + resp).html('');
                         $("#casescore_" + resp).append(img);
-                        
 
                         if ($("#task_" + taskid + " .img_" + taskid).length === $("#casescore_" + resp).parent().siblings().size()) {
-                            console.log("改修改了!!!")
-
+                            $.ajax({
+                                type: "POST",
+                                url:"${pageContext.request.contextPath}/task/taskscore",
+                                data: {
+                                    taskid: taskid
+                                },
+                                success: function (resp) {
+                                    $("#taskdone_" + taskid).html("YES");
+                                    $("#taskscore_" + taskid).html(resp);
+                                },
+                                error: function (xhr) {
+                                }
+                            });
                         }
-
                     },
                     error: function (xhr) {
                     }
