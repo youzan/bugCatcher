@@ -1,0 +1,38 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+input[type=checkbox] {
+    height: 32px;
+    width: 32px;
+}
+table {
+    margin-top: 30px;
+    table-layout: fixed;
+}
+th,td {
+    width: 75px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.table>tbody>tr>td {
+    vertical-align: middle;
+}
+
+.task {
+    margin-top: 35px;
+}
+.taskid {
+    width: 345px;
+    float: right;
+    margin-right: 725px;
+}
+
+
+

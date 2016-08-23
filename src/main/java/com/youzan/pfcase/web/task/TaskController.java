@@ -44,24 +44,6 @@ public class TaskController {
 
 
 
-
-//这个RequestMapping已经不需要了,可以删除
-    //查看所有任务
-    @RequestMapping(value = "all", method = RequestMethod.GET)
-    public String getAllTask(ModelMap model) {
-        model.addAttribute("allTask", taskService.getAllTask());
-
-        return "task/AllTask";
-    }
-
-
-
-
-
-
-
-
-
     //新建任务
     @RequestMapping("newTaskForm")
     public String newTaskForm(ModelMap model) {
@@ -131,7 +113,7 @@ public class TaskController {
 
         taskService.updateTask(task);
 
-        return "redirect:all";
+        return "redirect:/my";
     }
 
 

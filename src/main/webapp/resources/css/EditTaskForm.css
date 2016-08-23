@@ -1,0 +1,38 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.form-newtask {
+    max-width: 375px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-newtask .form-newtask-heading {
+    margin-bottom: 10px;
+}
+.form-newtask .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-newtask .form-control:focus {
+    z-index: 2;
+}
+.form-newtask input[type="text"] {
+    margin-bottom: 10px;
+}
+#owner {
+    width: 75px;
+    float: right;
+    margin-right: 215px;
+}
+
+button {
+    margin-top: 10px;
+}

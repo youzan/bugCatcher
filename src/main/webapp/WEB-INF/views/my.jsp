@@ -103,6 +103,23 @@
     <%@ include file="common/IncludeJsVendor.jsp"%>
     <script type="text/javascript">
         $(document).ready(function() {
+            $(".del").click(function () {
+                var link = $(this);
+                $.ajax({
+                    type: "POST",
+                    url:"${pageContext.request.contextPath}/task/delTask",
+                    data: {
+                        taskid: link.data("id")
+                    },
+                    success: function (resp) {
+                        $("#task_" + resp).remove();
+                    },
+                    error: function (xhr) {
+                    }
+                });
+                return false;
+            });
+
             $(".casedone").click(function () {
                 var link = $(this);
                 $.ajax({
