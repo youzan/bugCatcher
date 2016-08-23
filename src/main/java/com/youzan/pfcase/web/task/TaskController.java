@@ -126,7 +126,13 @@ public class TaskController {
     @RequestMapping("delTask")
     @ResponseBody
     public String delTask(@RequestParam("taskid") int taskid) {
-        taskService.delTask(taskid);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        String modifier = userDetails.getAccount().getUsername();
+
+        Timestamp updatetime = new Timestamp(new Date().getTime());
+
+        taskService.delTask(taskid, modifier, updatetime);
 
         return Integer.toString(taskid);
     }

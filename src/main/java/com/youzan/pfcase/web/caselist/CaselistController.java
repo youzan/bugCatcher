@@ -144,7 +144,13 @@ public class CaselistController {
     @RequestMapping("delCaselist")
     @ResponseBody
     public String delCaselist(@RequestParam("caseid") int caseid) {
-        caselistService.delCaselist(caseid);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        String modifier = userDetails.getAccount().getUsername();
+
+        Timestamp updatetime = new Timestamp(new Date().getTime());
+
+        caselistService.delCaselist(caseid, modifier, updatetime);
 
         return Integer.toString(caseid);
     }

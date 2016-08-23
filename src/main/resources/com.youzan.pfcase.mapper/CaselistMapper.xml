@@ -10,6 +10,7 @@
         SELECT
         *
         FROM CASELIST
+        WHERE not deleted=1
     </select>
 
     <select id="getCaselist" parameterType="int" resultType="Caselist">
@@ -35,9 +36,15 @@
         WHERE caseid = #{caseid}
     </update>
 
-    <delete id="delCaselist" parameterType="int">
-        DELETE FROM caselist
-        WHERE caseid = #{_parameter}
-    </delete>
+    <update id="delCaselist" parameterType="map">
+        UPDATE caselist SET
+        deleted = 1, modifier = "${modifier}", updatetime = "${updatetime}"
+        WHERE caseid = #{caseid}
+    </update>
+
+    <!--<delete id="delCaselist" parameterType="int">-->
+        <!--DELETE FROM caselist-->
+        <!--WHERE caseid = #{_parameter}-->
+    <!--</delete>-->
 
 </mapper>

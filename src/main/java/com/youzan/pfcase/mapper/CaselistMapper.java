@@ -2,8 +2,10 @@ package com.youzan.pfcase.mapper;
 
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.Caselist;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -25,10 +27,7 @@ public interface CaselistMapper {
 
 
 
-    void delCaselist(int caseid);
-
-
-
+    void delCaselist(@Param("caseid") int caseid, @Param("modifier") String modifier, @Param("updatetime") Timestamp updatetime);
 
 
 
