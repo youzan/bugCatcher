@@ -59,7 +59,7 @@
                                 <td>${caseid}</td>
                                 <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
                                 <td><input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if>></td>
-                                <td>
+                                <td id="casescore_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${taskcase.getEvaluated()}">
                                             <c:choose>
@@ -72,19 +72,20 @@
                                             </c:choose>
                                         </c:when>
                                         <c:otherwise>
-                                            评分
-                                            <input id="good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
-                                            <input id="bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
+                                            <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
+                                            <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
 
-                                <td>
+                                <td id="bugurl_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${not empty taskcase.getBugurl()}">
-                                            <a href="${taskcase.getBugurl()}"><img src="/images/bug.png" /></a>
+                                            <a class="bugurl" href="${taskcase.getBugurl()}"><img src="/images/bug.png" /></a>
+                                            <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}">
                                         </c:when>
                                         <c:otherwise>
+                                            <%--<a class="bugurl" href="javascript:void(0)"><img src="/images/bug.png" /></a>--%>
                                             <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://">
                                         </c:otherwise>
                                     </c:choose>
@@ -128,7 +129,7 @@
                         caseid: link.data("caseid")
                     },
                     success: function (resp) {
-                        $("#casedone_" + resp).attr('checked', true);
+                        $("#casedone_" + resp).prop('checked', true);
                     },
                     error: function (xhr) {
                     }
@@ -136,7 +137,7 @@
                 return false;
             });
 
-            $("#good").click(function () {
+            $(".good").click(function () {
                 var link = $(this);
                 $.ajax({
                     type: "POST",
@@ -146,7 +147,9 @@
                         caseid: link.data("caseid")
                     },
                     success: function (resp) {
-    //                    $("#casedone_" + resp).attr('checked', true);
+                        console.log("###", "#casescore_" + resp);
+                        $("#casescore_" + resp).html('');
+                        $("#casescore_" + resp).append('<img src="/images/good.png" />');
                     },
                     error: function (xhr) {
                     }
@@ -154,7 +157,7 @@
                 return false;
             });
 
-            $("#bad").click(function () {
+            $(".bad").click(function () {
                 var link = $(this);
                 $.ajax({
                     type: "POST",
@@ -164,7 +167,8 @@
                         caseid: link.data("caseid")
                     },
                     success: function (resp) {
-    //                    $("#casedone_" + resp).attr('checked', true);
+                        $("#casescore_" + resp).html('');
+                        $("#casescore_" + resp).append('<img src="/images/bad.png" />');
                     },
                     error: function (xhr) {
                     }
@@ -175,17 +179,23 @@
             $(".bugurl").blur(function () {
                 var link = $(this);
                 var bugurl = $(this).val();
-                if (bugurl) {
+                var taskid = link.data("taskid");
+                var caseid = link.data("caseid");
+                if (bugurl && bugurl !== "http://") {
                     $.ajax({
                         type: "POST",
                         url:"${pageContext.request.contextPath}/taskcase/bugurl",
                         data: {
-                            taskid: link.data("taskid"),
-                            caseid: link.data("caseid"),
+                            taskid: taskid,
+                            caseid: caseid,
                             bugurl: bugurl
                         },
                         success: function (resp) {
-        //                    $("#casedone_" + resp).attr('checked', true);
+                            var e1 = '<a class="bugurl" href="' + bugurl + '"><img src="/images/bug.png" /></a>';
+                            var e2 = '<input class="bugurl" data-taskid="' + taskid + '" data-caseid="' + caseid + '" type="url" value="' + bugurl + '">';
+                            $("#bugurl_" + resp).html('');
+                            $("#bugurl_" + resp).append(e1, e2);
+
                         },
                         error: function (xhr) {
                         }
