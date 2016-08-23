@@ -40,8 +40,18 @@
                             <td>${caselist.belongmodulec}</td>
                             <td>${caselist.priority}</td>
                             <td>${caselist.casestep}</td>
-                            <td>${caselist.reviewed}</td>
-                            <td>${caselist.automated}</td>
+                            <c:if test="${caselist.reviewed == true}">
+                                <td>YES</td>
+                            </c:if>
+                            <c:if test="${caselist.reviewed == false}">
+                                <td>NO</td>
+                            </c:if>
+                            <c:if test="${caselist.automated == true}">
+                                <td>YES</td>
+                            </c:if>
+                            <c:if test="${caselist.automated == false}">
+                                <td>NO</td>
+                            </c:if>
                             <td>${caselist.creator}</td>
                             <td>${caselist.modifier}</td>
                             <td>

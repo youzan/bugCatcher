@@ -64,10 +64,10 @@
                                         <c:when test="${taskcase.getEvaluated()}">
                                             <c:choose>
                                                 <c:when test="${taskcase.getCasescore()}">
-                                                    <img src="/images/good.png" />
+                                                    <img class="img_${taskEntry.key}" src="/images/good.png" />
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="/images/bad.png" />
+                                                    <img class="img_${taskEntry.key}" src="/images/bad.png" />
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:when>
@@ -81,11 +81,10 @@
                                 <td id="bugurl_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${not empty taskcase.getBugurl()}">
-                                            <a class="bugurl" href="${taskcase.getBugurl()}"><img src="/images/bug.png" /></a>
+                                            <a class="bugurl" href="${taskcase.getBugurl()}" target="_blank"><img src="/images/bug.png" /></a>
                                             <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}">
                                         </c:when>
                                         <c:otherwise>
-                                            <%--<a class="bugurl" href="javascript:void(0)"><img src="/images/bug.png" /></a>--%>
                                             <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://">
                                         </c:otherwise>
                                     </c:choose>
@@ -139,17 +138,26 @@
 
             $(".good").click(function () {
                 var link = $(this);
+                var taskid = link.data("taskid");
+                var caseid = link.data("caseid")
                 $.ajax({
                     type: "POST",
                     url:"${pageContext.request.contextPath}/taskcase/goodcasescore",
                     data: {
-                        taskid: link.data("taskid"),
-                        caseid: link.data("caseid")
+                        taskid: taskid,
+                        caseid: caseid
                     },
                     success: function (resp) {
-                        console.log("###", "#casescore_" + resp);
+//                        console.log("###", "#casescore_" + resp);
+                        var img = '<img class="img_' + taskid + '" src="/images/good.png" />'
                         $("#casescore_" + resp).html('');
-                        $("#casescore_" + resp).append('<img src="/images/good.png" />');
+                        $("#casescore_" + resp).append(img);
+
+
+                        if ($("#task_" + taskid + " .img_" + taskid).length === $("#casescore_" + resp).parent().siblings().size()) {
+                            console.log("改修改了!!!")
+
+                        }
                     },
                     error: function (xhr) {
                     }
@@ -159,16 +167,26 @@
 
             $(".bad").click(function () {
                 var link = $(this);
+                var taskid = link.data("taskid");
+                var caseid = link.data("caseid")
                 $.ajax({
                     type: "POST",
                     url:"${pageContext.request.contextPath}/taskcase/badcasescore",
                     data: {
-                        taskid: link.data("taskid"),
-                        caseid: link.data("caseid")
+                        taskid: taskid,
+                        caseid: caseid
                     },
                     success: function (resp) {
+                        var img = '<img class="img_' + taskid + '" src="/images/bad.png" />'
                         $("#casescore_" + resp).html('');
-                        $("#casescore_" + resp).append('<img src="/images/bad.png" />');
+                        $("#casescore_" + resp).append(img);
+                        
+
+                        if ($("#task_" + taskid + " .img_" + taskid).length === $("#casescore_" + resp).parent().siblings().size()) {
+                            console.log("改修改了!!!")
+
+                        }
+
                     },
                     error: function (xhr) {
                     }
@@ -191,7 +209,7 @@
                             bugurl: bugurl
                         },
                         success: function (resp) {
-                            var e1 = '<a class="bugurl" href="' + bugurl + '"><img src="/images/bug.png" /></a>';
+                            var e1 = '<a class="bugurl" href="' + bugurl + '" target="_blank"><img src="/images/bug.png" /></a>';
                             var e2 = '<input class="bugurl" data-taskid="' + taskid + '" data-caseid="' + caseid + '" type="url" value="' + bugurl + '">';
                             $("#bugurl_" + resp).html('');
                             $("#bugurl_" + resp).append(e1, e2);

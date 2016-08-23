@@ -32,12 +32,26 @@
     <form:textarea path="casestep" id="casestep" class="form-control" placeholder="用例步骤" value="${caselist.casestep}" required="true" readonly="${action == \"get\"}" />
     <div class="checkbox">
       <label>
-        <form:checkbox path="reviewed" checked="${caselist.reviewed}" /> 已评审?
+        <c:choose>
+          <c:when test="${caselist.reviewed}">
+            <form:checkbox path="reviewed" checked="checked" /> 已评审?
+          </c:when>
+          <c:otherwise>
+            <form:checkbox path="reviewed" /> 已评审?
+          </c:otherwise>
+        </c:choose>
       </label>
     </div>
     <div class="checkbox">
       <label>
-        <form:checkbox path="automated" checked="${caselist.automated}" /> 已自动化?
+        <c:choose>
+          <c:when test="${caselist.automated}">
+            <form:checkbox path="automated" checked="checked" /> 已自动化?
+          </c:when>
+          <c:otherwise>
+            <form:checkbox path="automated" /> 已评审?
+          </c:otherwise>
+        </c:choose>
       </label>
     </div>
     <c:if test="${action == \"edit\"}">
