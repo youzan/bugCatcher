@@ -7,7 +7,7 @@
     <h2 class="form-newtask-heading">任务信息</h2>
 
     <label for="taskid" class="sr-only">任务id</label>
-    <form:input path="taskid" id="taskid" class="form-control" placeholder="任务id" value="${task.taskid}" required="true" autofocus="true" readonly="true" />
+    <form:input path="taskid" id="taskid" class="form-control" placeholder="任务id" value="${task.taskid}" required="true" readonly="true" />
     <label for="taskname" class="sr-only">任务名称</label>
     <form:input path="taskname" id="taskname" class="form-control" placeholder="任务名称" value="${task.taskname}" required="true" autofocus="true" />
     <label for="owner" class="sr-only">任务执行人</label>
