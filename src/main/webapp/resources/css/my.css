@@ -37,6 +37,7 @@ th,td {
     vertical-align: middle;
 }
 .casename {
+    width: 750px;
     text-align: left;
 }
 
