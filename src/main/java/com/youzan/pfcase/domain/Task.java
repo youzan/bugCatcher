@@ -1,5 +1,8 @@
 package com.youzan.pfcase.domain;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,12 +13,18 @@ public class Task implements Serializable {
 
     private static final long serialVersionUID = 4733800009305112630L;
 
+    @NotNull
+    @Min(1)
     private int taskid;
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String taskname;
 
     private boolean prepared;
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String owner;
 
     private boolean taskdone;

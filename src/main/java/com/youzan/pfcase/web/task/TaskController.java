@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -38,13 +39,7 @@ public class TaskController {
     }
 
 
-//TODO: RequestMapping全部改成小写
-
-
-
-
-
-    //新建任务
+    //
     @RequestMapping("newTaskForm")
     public String newTaskForm(ModelMap model) {
         model.addAttribute("KFAccounts", accountService.getAllKFAccount());
@@ -54,37 +49,25 @@ public class TaskController {
     }
 
     @RequestMapping("newTask")
-    public String newTask(TaskForm form, BindingResult result) {
+    public String newTask(@Valid TaskForm form, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
+            model.addAttribute("KFAccounts", accountService.getAllKFAccount());
             return "task/NewTaskForm";
         }
+
         Task task = beanMapper.map(form, Task.class);
         UserDetails userDetails = (UserDetails) SecurityContextHolder
                 .getContext().getAuthentication().getPrincipal();
         Account account = userDetails.getAccount();
         task.setCreator(account.getUsername());
         task.setModifier(account.getUsername());
-//        Date date = new Date();
-//        task.setCreatetime(date);
-//        task.setUpdatetime(date);
-
         taskService.insertTask(task);
 
         return "redirect:/my";
     }
 
 
-
-
-
-
-
-
-
-
-
-
-    //查看/编辑task
+    //
     @RequestMapping(value = "editTaskForm", method = RequestMethod.GET)
     public String getCaselist(@RequestParam("taskid") int taskid, @RequestParam("action") String action, ModelMap model) {
         Task task = taskService.getTaskByTaskid(taskid);
@@ -97,20 +80,18 @@ public class TaskController {
     }
 
     @RequestMapping("editTask")
-    public String editTask(@ModelAttribute("task") Task task, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "caselist/NewCaselistForm";
-//        }
-
+    public String editTask(@Valid @ModelAttribute("task") Task task, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+            return "task/EditTaskForm";
+        }
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder
                 .getContext().getAuthentication().getPrincipal();
         Account account = userDetails.getAccount();
         task.setModifier(account.getUsername());
-
         Timestamp timestamp = new Timestamp(new Date().getTime());
         task.setUpdatetime(timestamp);
-
         taskService.updateTask(task);
 
         return "redirect:/my";
@@ -118,17 +99,14 @@ public class TaskController {
 
 
 
-
-    //删除task
+    //
     @RequestMapping("delTask")
     @ResponseBody
     public String delTask(@RequestParam("taskid") int taskid) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder
                 .getContext().getAuthentication().getPrincipal();
         String modifier = userDetails.getAccount().getUsername();
-
         Timestamp updatetime = new Timestamp(new Date().getTime());
-
         taskService.delTask(taskid, modifier, updatetime);
 
         return Integer.toString(taskid);
@@ -141,6 +119,7 @@ public class TaskController {
     @ResponseBody
     public String getTaskscore(@RequestParam("taskid") int taskid) {
         int taskscore = taskService.getTaskscore(taskid);
+
         return Integer.toString(taskscore);
     }
 

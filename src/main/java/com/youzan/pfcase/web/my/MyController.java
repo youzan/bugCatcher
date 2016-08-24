@@ -73,9 +73,6 @@ public class MyController {
 		}
 		model.addAttribute("taskcaseMap", taskcaseMap);
 
-
-
-
 		//
 
 		List<Caselist> allCaselist = caselistService.getAllCaselist();
@@ -86,10 +83,7 @@ public class MyController {
 			}
 		});
 		model.addAttribute("caselistMap", caselistMap);
-
-
 		model.addAttribute("active_my", true);
-
 
 		return "my";
 	}

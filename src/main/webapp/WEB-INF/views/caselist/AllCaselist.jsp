@@ -1,5 +1,6 @@
 <%@ include file="../common/IncludeHead.jsp"%>
 <link href="../css/AllCaselist.css" rel="stylesheet">
+<link href="../tablefilter/style/tablefilter.css" rel="stylesheet">
 <%@ include file="../common/IncludeNavbar.jsp"%>
 
     <div id="Content" class="container">

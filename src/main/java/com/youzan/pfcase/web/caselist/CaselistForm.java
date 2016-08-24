@@ -1,5 +1,7 @@
 package com.youzan.pfcase.web.caselist;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,20 +10,32 @@ import java.util.Date;
  */
 public class CaselistForm {
 
+    @NotNull
+    @Size(min = 1, max = 50)
     private String casename;
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String belongmodulea;
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String belongmoduleb;
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String belongmodulec;
 
+    @NotNull
     private int priority;
 
+    @NotNull
     private String casestep;
 
+    @NotNull
     private boolean reviewed;
 
+    @NotNull
     private boolean automated;
 
     public String getCasename() {

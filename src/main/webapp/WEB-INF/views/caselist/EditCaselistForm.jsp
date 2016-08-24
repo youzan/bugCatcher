@@ -8,16 +8,22 @@
     <h2 class="form-newtask-heading">用例信息</h2>
 
     <label for="caseid" class="sr-only">用例id</label>
+    <form:errors path="caseid" cssClass="error" />
     <form:input path="caseid" id="caseid" class="form-control" placeholder="用例id" value="${caselist.caseid}" required="true" readonly="true"/>
     <label for="casename" class="sr-only">用例名称</label>
+    <form:errors path="casename" cssClass="error" />
     <form:input path="casename" id="casename" class="form-control" placeholder="用例名称" value="${caselist.casename}" required="true" autofocus="true" readonly="${action == \"get\"}" />
     <label for="belongmodulea" class="sr-only">一级模块</label>
+    <form:errors path="belongmodulea" cssClass="error" />
     <form:input path="belongmodulea" id="belongmodulea" class="form-control" placeholder="一级模块" value="${caselist.belongmodulea}" required="true" readonly="${action == \"get\"}" />
     <label for="belongmoduleb" class="sr-only">二级模块</label>
+    <form:errors path="belongmoduleb" cssClass="error" />
     <form:input path="belongmoduleb" id="belongmoduleb" class="form-control" placeholder="二级模块" value="${caselist.belongmoduleb}" required="true" readonly="${action == \"get\"}" />
     <label for="belongmodulec" class="sr-only">三级模块</label>
+    <form:errors path="belongmodulec" cssClass="error" />
     <form:input path="belongmodulec" id="belongmodulec" class="form-control" placeholder="三级模块" value="${caselist.belongmodulec}" required="true" readonly="${action == \"get\"}" />
     <label for="priority" class="sr-only">等级</label>
+    <form:errors path="priority" cssClass="error" />
     <div>
       <span class="description">等级:</span>
       <form:select path="priority" id="priority" class="form-control" required="true">
@@ -29,9 +35,11 @@
       </form:select>
     </div>
     <label for="casestep" class="sr-only">用例步骤</label>
+    <form:errors path="casestep" cssClass="error" />
     <form:textarea path="casestep" id="casestep" class="form-control" placeholder="用例步骤" value="${caselist.casestep}" required="true" readonly="${action == \"get\"}" />
     <div class="checkbox">
       <label>
+        <form:errors path="reviewed" cssClass="error" />
         <c:choose>
           <c:when test="${caselist.reviewed}">
             <form:checkbox path="reviewed" checked="checked" /> 已评审?
@@ -44,6 +52,7 @@
     </div>
     <div class="checkbox">
       <label>
+        <form:errors path="automated" cssClass="error" />
         <c:choose>
           <c:when test="${caselist.automated}">
             <form:checkbox path="automated" checked="checked" /> 已自动化?
