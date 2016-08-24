@@ -23,7 +23,7 @@ public class PasswordEqualsValidator implements Validator {
         if (!password.equals(repeatedPassword)) {
             errors.rejectValue("password",
                     "PasswordEqualsValidator.accountForm.password",
-                    "password no match");
+                    "密码不一致, 请重新输入");
         }
     }
 

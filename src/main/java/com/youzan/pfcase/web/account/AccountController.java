@@ -2,12 +2,14 @@ package com.youzan.pfcase.web.account;
 
 import com.youzan.pfcase.domain.Account;
 import com.youzan.pfcase.domain.UserDetails;
+import com.youzan.pfcase.service.AccountService;
 import com.youzan.pfcase.web.account.AccountForm.EditAccount;
 import com.youzan.pfcase.web.account.AccountForm.NewAccount;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -37,6 +39,9 @@ public class AccountController {
     protected AccountHelper accountHelper;
 
     @Autowired
+    protected AccountService accountService;
+
+    @Autowired
     protected PasswordEqualsValidator passwordEqualsValidator;
 
     @InitBinder("accountForm")
@@ -60,8 +65,12 @@ public class AccountController {
     }
 
     @RequestMapping("newAccount")
-    public String newAccount(AccountForm form, BindingResult result) {
+    public String newAccount(@Validated({ NewAccount.class, Default.class }) AccountForm form, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
+            return "account/NewAccountForm";
+        }
+        if (accountService.getAccount(form.getUsername()) != null) {
+            model.addAttribute("duplicatedUsers", "用户名已存在");
             return "account/NewAccountForm";
         }
         accountHelper.newAccount(form);

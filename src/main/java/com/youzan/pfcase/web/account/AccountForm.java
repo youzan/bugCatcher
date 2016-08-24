@@ -15,8 +15,8 @@ public class AccountForm {
 
     }
 
-    @Null(groups = EditAccount.class)
     @NotNull(groups = NewAccount.class)
+    @Null(groups = EditAccount.class)
     @Size(min = 1, max = 25)
     private String username;
 
