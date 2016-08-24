@@ -36,6 +36,9 @@ th,td {
     text-align: center;
     vertical-align: middle;
 }
+.casename {
+    text-align: left;
+}
 
 /*input[class='bugurl'] {*/
     /*margin-left: 32px;*/

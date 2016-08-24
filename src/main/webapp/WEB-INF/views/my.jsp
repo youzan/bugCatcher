@@ -53,7 +53,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th><b>用例id</b></th>
-                            <th><b>用例名称</b></th>
+                            <th class="casename"><b>用例名称</b></th>
                             <th><b>已执行</b></th>
                             <th><b>执行质量</b></th>
                             <th><b>bug链接</b></th>
@@ -62,7 +62,7 @@
                             <c:set var="caseid">${taskcase.getCaseid()}</c:set>
                             <tr>
                                 <td>${caseid}</td>
-                                <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
+                                <td class="casename"><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
                                 <td>
                                     <sec:authorize access="isAuthenticated()">
                                         <sec:authentication property="principal.account" var="account" />
