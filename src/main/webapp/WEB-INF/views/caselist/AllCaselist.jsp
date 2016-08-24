@@ -106,17 +106,8 @@
             return false;
         });
 
-
-
-
         var tf = new TableFilter('caselists', {
             base_path: 'tablefilter/',
-
-
-
-
-
-
             col_1: 'select',
             col_2: 'select',
             col_3: 'select',
@@ -124,19 +115,11 @@
             col_5: 'none',
             col_6: 'none',
             col_7: 'none',
-
-
             auto_filter: true,
             auto_filter_delay: 100,
-
-
-
             col_widths: ['600px', '100px', '100px', '100px', '50px', '50px', '50px', '50px']
         });
         tf.init();
-
-
-
     });
 
 </script>
