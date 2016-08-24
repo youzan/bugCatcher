@@ -5,7 +5,7 @@
     <div id="Content" class="container">
             <form:form modelAttribute="taskcases" action="${pageContext.request.contextPath}/caselist/newtaskcase">
                 <div class="task">
-                    任务名称:
+                    <span>任务名称:</span>
                     <form:select path="taskid" id="taskid" class="form-control taskid" required="true">
                         <c:forEach var="unpreparedTask" items="${unpreparedTasks}">
                             <form:option value="${unpreparedTask.taskid}">${unpreparedTask.taskname}</form:option>
@@ -13,31 +13,32 @@
                     </form:select>
                 </div>
 
-                <table class="table table-hover">
+                <table id="caselists" class="table table-hover">
                     <tr class="headline">
                         <%--<th><b>用例id</b></th>--%>
                         <th class="casename"><b>用例名称</b></th>
-                        <%--<th><b>一级模块</b></th>--%>
-                        <%--<th><b>二级模块</b></th>--%>
-                        <%--<th><b>三级模块</b></th>--%>
-                        <th><b>用例优先级</b></th>
+                        <th><b>一级模块</b></th>
+                        <th><b>二级模块</b></th>
+                        <th><b>三级模块</b></th>
+                        <th><b>等级</b>
                         <%--<th><b>用例步骤</b></th>--%>
                         <%--<th><b>已评审?</b></th>--%>
                         <%--<th><b>已自动化?</b></th>--%>
                         <%--<th><b>创建人</b></th>--%>
                         <%--<th><b>修改人</b></th>--%>
-                        <th><b>任务用例?</b></th>
+                        <th><b>勾选</b></th>
+                                                        <%--<th><b>任务用例?</b></th>--%>
                         <%--<th><b>查看?</b></th>--%>
-                        <th><b>编辑?</b></th>
-                        <th><b>删除?</b></th>
+                        <th><b>编辑</b></th>
+                        <th><b>删除</b></th>
                     </tr>
                     <c:forEach var="caselist" items="${allCaselist}">
                         <tr id="case_${caselist.caseid}">
                             <%--<td>${caselist.caseid}</td>--%>
                             <td class="casename"><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=get" target="_blank">${caselist.casename}</a></td>
-                            <%--<td>${caselist.belongmodulea}</td>--%>
-                            <%--<td>${caselist.belongmoduleb}</td>--%>
-                            <%--<td>${caselist.belongmodulec}</td>--%>
+                            <td>${caselist.belongmodulea}</td>
+                            <td>${caselist.belongmoduleb}</td>
+                            <td>${caselist.belongmodulec}</td>
                             <td>${caselist.priority}</td>
                             <%--<td>${caselist.casestep}</td>--%>
                             <%--<c:if test="${caselist.reviewed == true}">--%>
@@ -85,6 +86,7 @@
 
 
 <%@ include file="../common/IncludeJsVendor.jsp"%>
+<script type="text/javascript" src="<c:url value="/tablefilter/tablefilter.js" />"></script>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -105,7 +107,39 @@
             return false;
         });
 
+
+
+
+        var tf = new TableFilter('caselists', {
+            base_path: 'tablefilter/',
+
+
+
+
+
+
+            col_1: 'select',
+            col_2: 'select',
+            col_3: 'select',
+            col_4: 'select',
+            col_5: 'none',
+            col_6: 'none',
+            col_7: 'none',
+
+
+            auto_filter: true,
+            auto_filter_delay: 100,
+
+
+
+            col_widths: ['600px', '100px', '100px', '100px', '50px', '50px', '50px', '50px']
+        });
+        tf.init();
+
+
+
     });
+
 </script>
 
 </body>

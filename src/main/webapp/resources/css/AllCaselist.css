@@ -15,14 +15,14 @@ table {
     table-layout: fixed;
 }
 th,td {
-    width: 10px;
+    /*width: 10px;*/
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .casename {
-    width: 100px;
+    /*width: 100px;*/
     text-align: left;
 }
 .table>tbody>tr>td {
@@ -35,14 +35,30 @@ th,td {
 .task {
     margin-top: 35px;
 }
+.task span {
+    color: #265a88;
+    font-size: 18px;
+    line-height: 35px;
+}
 .taskid {
     width: 345px;
     float: right;
-    margin-right: 725px;
+    margin-right: 705px;
 }
 .btn-block {
     width: 345px;
     margin: auto;
 }
 
-
+.fltrow {
+    background: #5cb85c;
+}
+#flt0_caselists {
+    width: 612px;
+}
+#flt1_caselists, #flt2_caselists, #flt3_caselists {
+    width: 95px;
+}
+#flt4_caselists {
+    width: 42px;
+}
