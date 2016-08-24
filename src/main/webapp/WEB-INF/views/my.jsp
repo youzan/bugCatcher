@@ -10,8 +10,13 @@
                     <%--${taskEntry.value.taskname}--%>
                     <ul id="taskInfo" class="list-inline">
                         <li>${taskEntry.value.taskname}</li>
-                        <li><a href="${pageContext.request.contextPath}/task/editTaskForm?taskid=${taskEntry.key}&action=edit">编辑</a></li>
-                        <li><a href="javascript:void(0)" data-id="${taskEntry.key}" class="del">删除</a></li>
+                        <sec:authorize access="isAuthenticated()">
+                            <sec:authentication property="principal.account" var="account" />
+                            <c:if test="${account.role != 'cs'}">
+                                <li><a href="${pageContext.request.contextPath}/task/editTaskForm?taskid=${taskEntry.key}&action=edit">编辑</a></li>
+                                <li><a href="javascript:void(0)" data-id="${taskEntry.key}" class="del">删除</a></li>
+                            </c:if>
+                        </sec:authorize>
                     </ul>
                 </div>
                 <div class="panel-body">
@@ -58,7 +63,17 @@
                             <tr>
                                 <td>${caseid}</td>
                                 <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
-                                <td><input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if>></td>
+                                <td>
+                                    <sec:authorize access="isAuthenticated()">
+                                        <sec:authentication property="principal.account" var="account" />
+                                        <c:if test="${account.role != 'kf'}">
+                                            <input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if> disabled >
+                                        </c:if>
+                                        <c:if test="${account.role == 'kf'}">
+                                            <input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if> >
+                                        </c:if>
+                                    </sec:authorize>
+                                </td>
                                 <td id="casescore_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${taskcase.getEvaluated()}">
@@ -72,8 +87,17 @@
                                             </c:choose>
                                         </c:when>
                                         <c:otherwise>
-                                            <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
-                                            <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
+                                            <sec:authorize access="isAuthenticated()">
+                                                <sec:authentication property="principal.account" var="account" />
+                                                <c:if test="${account.role != 'cs'}">
+                                                    <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good" disabled>
+                                                    <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad" disabled>
+                                                </c:if>
+                                                <c:if test="${account.role == 'cs'}">
+                                                    <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
+                                                    <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
+                                                </c:if>
+                                            </sec:authorize>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
@@ -81,11 +105,28 @@
                                 <td id="bugurl_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${not empty taskcase.getBugurl()}">
-                                            <a class="bugurl" href="${taskcase.getBugurl()}" target="_blank"><img src="/images/bug.png" /></a>
-                                            <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}">
+                                            <a class="buglink" href="${taskcase.getBugurl()}" target="_blank"><img src="/images/bug.png" /></a>
+                                            <sec:authorize access="isAuthenticated()">
+                                                <sec:authentication property="principal.account" var="account" />
+                                                <c:if test="${account.role != 'cs'}">
+                                                    <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}" disabled>
+                                                </c:if>
+                                                <c:if test="${account.role == 'cs'}">
+                                                    <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}">
+                                                </c:if>
+                                            </sec:authorize>
                                         </c:when>
                                         <c:otherwise>
-                                            <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://">
+
+                                            <sec:authorize access="isAuthenticated()">
+                                                <sec:authentication property="principal.account" var="account" />
+                                                <c:if test="${account.role != 'cs'}">
+                                                    <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://" disabled>
+                                                </c:if>
+                                                <c:if test="${account.role == 'cs'}">
+                                                    <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://">
+                                                </c:if>
+                                            </sec:authorize>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
@@ -213,7 +254,7 @@
                 return false;
             });
 
-            $(".bugurl").blur(function () {
+            $(document).on('change', '.bugurl', function () {
                 var link = $(this);
                 var bugurl = $(this).val();
                 var taskid = link.data("taskid");
@@ -228,7 +269,7 @@
                             bugurl: bugurl
                         },
                         success: function (resp) {
-                            var e1 = '<a class="bugurl" href="' + bugurl + '" target="_blank"><img src="/images/bug.png" /></a>';
+                            var e1 = '<a class="buglink" href="' + bugurl + '" target="_blank"><img src="/images/bug.png" /></a>';
                             var e2 = '<input class="bugurl" data-taskid="' + taskid + '" data-caseid="' + caseid + '" type="url" value="' + bugurl + '">';
                             $("#bugurl_" + resp).html('');
                             $("#bugurl_" + resp).append(e1, e2);
@@ -241,7 +282,6 @@
 
                 return false;
             });
-
         });
     </script>
 

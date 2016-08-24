@@ -2,7 +2,7 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
     background-color: #eee;
-    max-width: 1170px;
+    max-width: 1120px;
     margin: 0 auto;
 }
 
@@ -15,16 +15,23 @@ table {
     table-layout: fixed;
 }
 th,td {
-    width: 75px;
+    width: 10px;
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.casename {
+    width: 100px;
+    text-align: left;
+}
 .table>tbody>tr>td {
     vertical-align: middle;
 }
-
+.headline {
+    color: #fff;
+    background: #5cb85c;
+}
 .task {
     margin-top: 35px;
 }
@@ -33,6 +40,9 @@ th,td {
     float: right;
     margin-right: 725px;
 }
-
+.btn-block {
+    width: 345px;
+    margin: auto;
+}
 
 

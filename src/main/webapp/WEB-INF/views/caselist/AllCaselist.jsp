@@ -14,57 +14,72 @@
                 </div>
 
                 <table class="table table-hover">
-                    <tr>
-                        <th><b>用例id</b></th>
-                        <th><b>用例名称</b></th>
-                        <th><b>一级模块</b></th>
-                        <th><b>二级模块</b></th>
-                        <th><b>三级模块</b></th>
-                        <th><b>优先级</b></th>
-                        <th><b>用例步骤</b></th>
-                        <th><b>已评审?</b></th>
-                        <th><b>已自动化?</b></th>
-                        <th><b>创建人</b></th>
-                        <th><b>修改人</b></th>
+                    <tr class="headline">
+                        <%--<th><b>用例id</b></th>--%>
+                        <th class="casename"><b>用例名称</b></th>
+                        <%--<th><b>一级模块</b></th>--%>
+                        <%--<th><b>二级模块</b></th>--%>
+                        <%--<th><b>三级模块</b></th>--%>
+                        <th><b>用例优先级</b></th>
+                        <%--<th><b>用例步骤</b></th>--%>
+                        <%--<th><b>已评审?</b></th>--%>
+                        <%--<th><b>已自动化?</b></th>--%>
+                        <%--<th><b>创建人</b></th>--%>
+                        <%--<th><b>修改人</b></th>--%>
                         <th><b>任务用例?</b></th>
-                        <th><b>查看?</b></th>
+                        <%--<th><b>查看?</b></th>--%>
                         <th><b>编辑?</b></th>
                         <th><b>删除?</b></th>
                     </tr>
                     <c:forEach var="caselist" items="${allCaselist}">
                         <tr id="case_${caselist.caseid}">
-                            <td>${caselist.caseid}</td>
-                            <td>${caselist.casename}</td>
-                            <td>${caselist.belongmodulea}</td>
-                            <td>${caselist.belongmoduleb}</td>
-                            <td>${caselist.belongmodulec}</td>
+                            <%--<td>${caselist.caseid}</td>--%>
+                            <td class="casename"><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=get" target="_blank">${caselist.casename}</a></td>
+                            <%--<td>${caselist.belongmodulea}</td>--%>
+                            <%--<td>${caselist.belongmoduleb}</td>--%>
+                            <%--<td>${caselist.belongmodulec}</td>--%>
                             <td>${caselist.priority}</td>
-                            <td>${caselist.casestep}</td>
-                            <c:if test="${caselist.reviewed == true}">
-                                <td>YES</td>
-                            </c:if>
-                            <c:if test="${caselist.reviewed == false}">
-                                <td>NO</td>
-                            </c:if>
-                            <c:if test="${caselist.automated == true}">
-                                <td>YES</td>
-                            </c:if>
-                            <c:if test="${caselist.automated == false}">
-                                <td>NO</td>
-                            </c:if>
-                            <td>${caselist.creator}</td>
-                            <td>${caselist.modifier}</td>
+                            <%--<td>${caselist.casestep}</td>--%>
+                            <%--<c:if test="${caselist.reviewed == true}">--%>
+                                <%--<td>YES</td>--%>
+                            <%--</c:if>--%>
+                            <%--<c:if test="${caselist.reviewed == false}">--%>
+                                <%--<td>NO</td>--%>
+                            <%--</c:if>--%>
+                            <%--<c:if test="${caselist.automated == true}">--%>
+                                <%--<td>YES</td>--%>
+                            <%--</c:if>--%>
+                            <%--<c:if test="${caselist.automated == false}">--%>
+                                <%--<td>NO</td>--%>
+                            <%--</c:if>--%>
+                            <%--<td>${caselist.creator}</td>--%>
+                            <%--<td>${caselist.modifier}</td>--%>
+
                             <td>
-                                <input type = "checkbox" name = "caseids" value = "${caselist.caseid}" />
+                                <sec:authorize access="isAuthenticated()">
+                                    <sec:authentication property="principal.account" var="account" />
+                                    <c:if test="${account.role == 'cs'}">
+                                        <input type = "checkbox" name = "caseids" value = "${caselist.caseid}" />
+                                    </c:if>
+                                    <c:if test="${account.role != 'cs'}">
+                                        <input type = "checkbox" name = "caseids" value = "${caselist.caseid}" disabled />
+                                    </c:if>
+                                </sec:authorize>
                             </td>
-                            <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=get">查看</a></td>
+                            <%--<td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=get">查看</a></td>--%>
                             <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=edit">编辑</a></td>
                             <td><a href="javascript:void(0)" data-id="${caselist.caseid}" class="del">删除</a></td>
                         </tr>
                     </c:forEach>
                 </table>
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">分配</button>
+                <sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal.account" var="account" />
+                    <c:if test="${account.role == 'cs'}">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">分配</button>
+                    </c:if>
+                </sec:authorize>
+
             </form:form>
     </div>
 
