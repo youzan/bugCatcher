@@ -5,7 +5,7 @@
     <div id="Content" class="container">
             <form:form modelAttribute="taskcases" action="${pageContext.request.contextPath}/caselist/newtaskcase">
                 <div class="task">
-                    <span>任务名称:</span>
+                    <span>待分配任务:</span>
                     <form:select path="taskid" id="taskid" class="form-control taskid" required="true">
                         <c:forEach var="unpreparedTask" items="${unpreparedTasks}">
                             <form:option value="${unpreparedTask.taskid}">${unpreparedTask.taskname}</form:option>
