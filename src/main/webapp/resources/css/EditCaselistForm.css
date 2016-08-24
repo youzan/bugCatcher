@@ -27,10 +27,13 @@ body {
 .form-newtask input[type="text"] {
     margin-bottom: 10px;
 }
+.description {
+    line-height: 25px;
+}
 #priority {
     width: 35px;
     float: right;
-    margin-right: 230px;
+    margin-right: 270px;
 }
 #casestep {
     margin-top: 10px;

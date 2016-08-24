@@ -18,7 +18,7 @@
         <form:input path="belongmodulec" id="belongmodulec" class="form-control" placeholder="三级模块" required="true" />
         <label for="priority" class="sr-only">等级</label>
         <div>
-            等级:
+            <span class="description">等级:</span>
             <form:select path="priority" id="priority" class="form-control" required="true">
                 <option value="1">1</option>
                 <option value="2">2</option>
