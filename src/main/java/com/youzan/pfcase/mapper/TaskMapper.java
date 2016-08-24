@@ -15,8 +15,10 @@ import java.util.List;
 public interface TaskMapper {
 
     List<Task> getAllTask();
+    List<Task> getAllTaskByUsername(@Param("username") String username);
     List<Task> getUnpreparedTasks();
     Task getTaskByTaskid(int taskid);
+    int getTaskscore(@Param("taskid") int taskid);
 
 
     void insertTask(Task task);

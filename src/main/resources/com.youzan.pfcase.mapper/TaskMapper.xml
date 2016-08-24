@@ -14,6 +14,15 @@
         ORDER BY createtime DESC
     </select>
 
+    <select id="getAllTaskByUsername" parameterType="map" resultType="Task">
+        SELECT
+        *
+        FROM TASK
+        WHERE not deleted=1
+        AND (owner="${username}" OR creator="${username}")
+        ORDER BY createtime DESC
+    </select>
+
     <select id="getTaskByTaskid" parameterType="int" resultType="Task">
         SELECT
         *
@@ -29,6 +38,12 @@
         AND not deleted=1
     </select>
 
+    <select id="getTaskscore" parameterType="map" resultType="Integer">
+        SELECT
+        taskscore
+        FROM TASK
+        WHERE TASKID = #{taskid}
+    </select>
 
     <insert id="insertTask" parameterType="Task">
         INSERT INTO TASK

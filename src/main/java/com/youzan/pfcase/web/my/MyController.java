@@ -24,6 +24,8 @@ import java.util.Map;
 @RequestMapping("/")
 public class MyController {
 
+	private List<Task> allTask;
+
 	@Autowired
 	protected AccountService accountService;
 
@@ -38,19 +40,15 @@ public class MyController {
 
 	@RequestMapping(value = "my", method = RequestMethod.GET)
 	public String my(ModelMap model) throws Exception {
-//		Account account = accountService.getAccount("admin");
-//		model.addAttribute("message", account.getPassword());
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username = userDetails.getAccount().getUsername();
+		String role = userDetails.getAccount().getRole();
+		if (username.equals("admin") || role.equals("cs")) {
+			allTask = taskService.getAllTask();
+		} else {
+			allTask = taskService.getAllTaskByUsername(username);
+		}
 
-//		try {
-//			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//			Account account = userDetails.getAccount();
-//			model.addAttribute("message", account.getEmail());
-//		} catch (Exception e) {
-//			model.addAttribute("message", "请登录.");
-//		}
-
-
-		List<Task> allTask = taskService.getAllTask();
 		Map<String, Task> taskMap = Maps.uniqueIndex(allTask, new Function<Task, String>() {
 			@Override
 			public String apply(Task task) {
@@ -91,30 +89,6 @@ public class MyController {
 
 
 		model.addAttribute("active_my", true);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 		return "my";

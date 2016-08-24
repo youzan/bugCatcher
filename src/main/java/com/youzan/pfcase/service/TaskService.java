@@ -21,8 +21,12 @@ public class TaskService {
     private TaskMapper taskMapper;
 
     public List<Task> getAllTask() { return taskMapper.getAllTask(); }
+    public List<Task> getAllTaskByUsername(String username) { return taskMapper.getAllTaskByUsername(username); }
     public List<Task> getUnpreparedTasks() { return taskMapper.getUnpreparedTasks(); }
     public Task getTaskByTaskid(int taskid) { return taskMapper.getTaskByTaskid(taskid);
+    }
+
+    public int getTaskscore(int taskid) { return taskMapper.getTaskscore(taskid);
     }
 
 

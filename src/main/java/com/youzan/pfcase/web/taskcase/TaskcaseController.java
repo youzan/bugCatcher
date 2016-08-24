@@ -64,7 +64,7 @@ public class TaskcaseController {
             int taskscore = taskGoodResultCount * 100 / taskCount;
             taskService.updateTaskscore(taskid, taskscore);
 
-            return "Task is done.";
+            return taskid + "_" + caseid;
         }
 
 
@@ -87,7 +87,7 @@ public class TaskcaseController {
             int taskscore = taskGoodResultCount * 100 / taskCount;
             taskService.updateTaskscore(taskid, taskscore);
 
-            return "Task is done.";
+            return taskid + "_" + caseid;
         }
 
 

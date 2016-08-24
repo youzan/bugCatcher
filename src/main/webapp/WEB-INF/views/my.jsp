@@ -29,13 +29,13 @@
                         </c:if>
                         <dt>任务已完成?</dt>
                         <c:if test="${taskEntry.value.taskdone == true}">
-                            <dd>YES</dd>
+                            <dd id="taskdone_${taskEntry.key}">YES</dd>
                         </c:if>
                         <c:if test="${taskEntry.value.taskdone == false}">
-                            <dd>NO</dd>
+                            <dd id="taskdone_${taskEntry.key}">NO</dd>
                         </c:if>
                         <dt>任务评分</dt>
-                        <dd>${taskEntry.value.taskscore}</dd>
+                        <dd id="taskscore_${taskEntry.key}">${taskEntry.value.taskscore}</dd>
                         <dt>创建人</dt>
                         <dd>${taskEntry.value.creator}</dd>
                         <dt>修改人</dt>
@@ -59,30 +59,30 @@
                                 <td>${caseid}</td>
                                 <td><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
                                 <td><input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if>></td>
-                                <td>
+                                <td id="casescore_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${taskcase.getEvaluated()}">
                                             <c:choose>
                                                 <c:when test="${taskcase.getCasescore()}">
-                                                    <img src="/images/good.png" />
+                                                    <img class="img_${taskEntry.key}" src="/images/good.png" />
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img src="/images/bad.png" />
+                                                    <img class="img_${taskEntry.key}" src="/images/bad.png" />
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:when>
                                         <c:otherwise>
-                                            评分
-                                            <input id="good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
-                                            <input id="bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
+                                            <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
+                                            <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
 
-                                <td>
+                                <td id="bugurl_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${not empty taskcase.getBugurl()}">
-                                            <a href="${taskcase.getBugurl()}"><img src="/images/bug.png" /></a>
+                                            <a class="bugurl" href="${taskcase.getBugurl()}" target="_blank"><img src="/images/bug.png" /></a>
+                                            <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}">
                                         </c:when>
                                         <c:otherwise>
                                             <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://">
@@ -128,7 +128,7 @@
                         caseid: link.data("caseid")
                     },
                     success: function (resp) {
-                        $("#casedone_" + resp).attr('checked', true);
+                        $("#casedone_" + resp).prop('checked', true);
                     },
                     error: function (xhr) {
                     }
@@ -136,35 +136,76 @@
                 return false;
             });
 
-            $("#good").click(function () {
+            $(".good").click(function () {
                 var link = $(this);
+                var taskid = link.data("taskid");
+                var caseid = link.data("caseid")
                 $.ajax({
                     type: "POST",
                     url:"${pageContext.request.contextPath}/taskcase/goodcasescore",
                     data: {
-                        taskid: link.data("taskid"),
-                        caseid: link.data("caseid")
+                        taskid: taskid,
+                        caseid: caseid
                     },
                     success: function (resp) {
-    //                    $("#casedone_" + resp).attr('checked', true);
+                        var img = '<img class="img_' + taskid + '" src="/images/good.png" />'
+                        $("#casescore_" + resp).html('');
+                        $("#casescore_" + resp).append(img);
+
+                        if ($("#task_" + taskid + " .img_" + taskid).length === $("#casescore_" + resp).parent().siblings().size()) {
+                            $.ajax({
+                                type: "POST",
+                                url:"${pageContext.request.contextPath}/task/taskscore",
+                                data: {
+                                    taskid: taskid
+                                },
+                                success: function (resp) {
+                                    $("#taskdone_" + taskid).html("YES");
+                                    $("#taskscore_" + taskid).html(resp);
+                                },
+                                error: function (xhr) {
+                                }
+                            });
+                        }
                     },
                     error: function (xhr) {
                     }
                 });
+
                 return false;
             });
 
-            $("#bad").click(function () {
+            $(".bad").click(function () {
                 var link = $(this);
+                var taskid = link.data("taskid");
+                var caseid = link.data("caseid")
                 $.ajax({
                     type: "POST",
                     url:"${pageContext.request.contextPath}/taskcase/badcasescore",
                     data: {
-                        taskid: link.data("taskid"),
-                        caseid: link.data("caseid")
+                        taskid: taskid,
+                        caseid: caseid
                     },
                     success: function (resp) {
-    //                    $("#casedone_" + resp).attr('checked', true);
+                        var img = '<img class="img_' + taskid + '" src="/images/bad.png" />'
+                        $("#casescore_" + resp).html('');
+                        $("#casescore_" + resp).append(img);
+
+                        if ($("#task_" + taskid + " .img_" + taskid).length === $("#casescore_" + resp).parent().siblings().size()) {
+                            $.ajax({
+                                type: "POST",
+                                url:"${pageContext.request.contextPath}/task/taskscore",
+                                data: {
+                                    taskid: taskid
+                                },
+                                success: function (resp) {
+                                    $("#taskdone_" + taskid).html("YES");
+                                    $("#taskscore_" + taskid).html(resp);
+                                },
+                                error: function (xhr) {
+                                }
+                            });
+                        }
                     },
                     error: function (xhr) {
                     }
@@ -175,17 +216,23 @@
             $(".bugurl").blur(function () {
                 var link = $(this);
                 var bugurl = $(this).val();
-                if (bugurl) {
+                var taskid = link.data("taskid");
+                var caseid = link.data("caseid");
+                if (bugurl && bugurl !== "http://") {
                     $.ajax({
                         type: "POST",
                         url:"${pageContext.request.contextPath}/taskcase/bugurl",
                         data: {
-                            taskid: link.data("taskid"),
-                            caseid: link.data("caseid"),
+                            taskid: taskid,
+                            caseid: caseid,
                             bugurl: bugurl
                         },
                         success: function (resp) {
-        //                    $("#casedone_" + resp).attr('checked', true);
+                            var e1 = '<a class="bugurl" href="' + bugurl + '" target="_blank"><img src="/images/bug.png" /></a>';
+                            var e2 = '<input class="bugurl" data-taskid="' + taskid + '" data-caseid="' + caseid + '" type="url" value="' + bugurl + '">';
+                            $("#bugurl_" + resp).html('');
+                            $("#bugurl_" + resp).append(e1, e2);
+
                         },
                         error: function (xhr) {
                         }
