@@ -27,6 +27,9 @@ body {
 .form-newtask input[type="text"] {
     margin-bottom: 10px;
 }
+.description {
+    line-height: 25px;
+}
 #owner {
     width: 75px;
     float: right;
