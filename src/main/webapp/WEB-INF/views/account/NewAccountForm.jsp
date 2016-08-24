@@ -17,13 +17,13 @@
         <form:input size="40" path="email" id="email" name='email' class="form-control" placeholder="邮箱" required="true"/>
 
         <label class="radio-inline">
-            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiocs" value="cs"/> 测试
+            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiocs" value="cs" required="true"/> 测试
         </label>
         <label class="radio-inline">
-            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiokf" value="kf"/> 开发
+            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiokf" value="kf" required="true"/> 开发
         </label>
         <label class="radio-inline">
-            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiocp" value="cp"/> 产品
+            <form:radiobutton path="role" name="inlineRadioOptions" id="inlineRadiocp" value="cp" required="true"/> 产品
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">立即注册</button>
     </form:form>
