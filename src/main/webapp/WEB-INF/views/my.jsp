@@ -66,10 +66,10 @@
                                 <td>
                                     <sec:authorize access="isAuthenticated()">
                                         <sec:authentication property="principal.account" var="account" />
-                                        <c:if test="${account.role != 'kf'}">
+                                        <c:if test="${account.role != 'kf' && account.role != 'admin'}">
                                             <input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if> disabled >
                                         </c:if>
-                                        <c:if test="${account.role == 'kf'}">
+                                        <c:if test="${account.role == 'kf' || account.role == 'admin'}">
                                             <input id="casedone_${taskEntry.key}_${caseid}" class="casedone" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="checkbox" <c:if test="${taskcase.getCasedone()}">checked</c:if> >
                                         </c:if>
                                     </sec:authorize>
@@ -89,11 +89,11 @@
                                         <c:otherwise>
                                             <sec:authorize access="isAuthenticated()">
                                                 <sec:authentication property="principal.account" var="account" />
-                                                <c:if test="${account.role != 'cs'}">
+                                                <c:if test="${account.role != 'cs' && account.role != 'admin'}">
                                                     <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good" disabled>
                                                     <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad" disabled>
                                                 </c:if>
-                                                <c:if test="${account.role == 'cs'}">
+                                                <c:if test="${account.role == 'cs' || account.role == 'admin'}">
                                                     <input class="btn btn-success good" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="good">
                                                     <input class="btn btn-danger bad" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="button" value="bad">
                                                 </c:if>
@@ -108,10 +108,10 @@
                                             <a class="buglink" href="${taskcase.getBugurl()}" target="_blank"><img src="/images/bug.png" /></a>
                                             <sec:authorize access="isAuthenticated()">
                                                 <sec:authentication property="principal.account" var="account" />
-                                                <c:if test="${account.role != 'cs'}">
+                                                <c:if test="${account.role != 'cs' && account.role != 'admin'}">
                                                     <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}" disabled>
                                                 </c:if>
-                                                <c:if test="${account.role == 'cs'}">
+                                                <c:if test="${account.role == 'cs' || account.role == 'admin'}">
                                                     <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="${taskcase.getBugurl()}">
                                                 </c:if>
                                             </sec:authorize>
@@ -120,10 +120,10 @@
 
                                             <sec:authorize access="isAuthenticated()">
                                                 <sec:authentication property="principal.account" var="account" />
-                                                <c:if test="${account.role != 'cs'}">
+                                                <c:if test="${account.role != 'cs' && account.role != 'admin'}">
                                                     <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://" disabled>
                                                 </c:if>
-                                                <c:if test="${account.role == 'cs'}">
+                                                <c:if test="${account.role == 'cs' || account.role == 'admin'}">
                                                     <input class="bugurl" data-taskid="${taskEntry.key}" data-caseid="${caseid}" type="url" value="http://">
                                                 </c:if>
                                             </sec:authorize>
