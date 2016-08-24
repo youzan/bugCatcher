@@ -28,10 +28,6 @@ th,td {
 .table>tbody>tr>td {
     vertical-align: middle;
 }
-.headline {
-    color: #fff;
-    background: #5cb85c;
-}
 .task {
     margin-top: 35px;
 }
@@ -43,7 +39,7 @@ th,td {
 .taskid {
     width: 345px;
     float: right;
-    margin-right: 705px;
+    margin-right: 690px;
 }
 .btn-block {
     width: 345px;
@@ -51,7 +47,7 @@ th,td {
 }
 
 .fltrow {
-    background: #5cb85c;
+    background-color: #5cb85c;
 }
 #flt0_caselists {
     width: 612px;

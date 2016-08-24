@@ -1,5 +1,7 @@
 package com.youzan.pfcase.web.task;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -8,8 +10,12 @@ import java.util.Date;
  */
 public class TaskForm {
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String taskname;
 
+    @NotNull
+    @Size(min = 1, max = 25)
     private String owner;
 
     public String getTaskname() {
@@ -29,6 +35,5 @@ public class TaskForm {
     }
 
 }
-
 
 
