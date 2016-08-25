@@ -1,0 +1,18 @@
+.container {
+    padding-top:80px;
+    min-width:320px
+}
+.dragon-ctrl {
+    margin:0 auto;
+    width:130px;
+    height:104px;
+    background: url("/images/dragon.gif") center center no-repeat;
+    background-size:130px 104px
+}
+.error-msg {
+    margin-top:30px;
+    text-align:center;
+    color:#333;
+    font-size:16px;
+    line-height:24px
+}

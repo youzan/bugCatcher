@@ -1,11 +1,16 @@
 <%@ include file="common/IncludeHead.jsp"%>
+<link href="../css/notFoundError.css" rel="stylesheet">
 </head>
 
 <body>
-  <h2>Your request is not found...</h2>
-  <p>
-    <a href="${pageContext.request.contextPath}/catalog/">Go to TOP</a>
-  </p>
+
+  <div class="container">
+    <div class="dragon-ctrl">
+    </div>
+    <div class="error-msg">
+      哎呀，页面被霸王龙吃了~
+    </div>
+  </div>
 
   <%@ include file="common/IncludeJsVendor.jsp"%>
 </body>
