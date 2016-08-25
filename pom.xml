@@ -1,12 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.springapp</groupId>
+    <groupId>com.youzan</groupId>
     <artifactId>pfcase</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>pfcase</name>
 
+
+    
+    <properties>
+        <spring.version>4.3.2.RELEASE</spring.version>
+        <javax.servlet.servlet-api.version>2.5</javax.servlet.servlet-api.version>
+        <org.mybatis.mybatis.version>3.4.1</org.mybatis.mybatis.version>
+        <org.mybatis.mybatis-spring.version>1.3.0</org.mybatis.mybatis-spring.version>
+        <mysql.mysql-connector-java.version>5.1.39</mysql.mysql-connector-java.version>
+        <spring.security.version>3.1.4.RELEASE</spring.security.version>
+        <javax.validation.version>1.0.0.Final</javax.validation.version>
+        <com.google.collections.google-collections.version>1.0</com.google.collections.google-collections.version>
+        <org.hibernate.hibernate-validator.version>4.3.1.Final</org.hibernate.hibernate-validator.version>
+        <!-- == Dozer== -->
+        <dozer.version>5.4.0</dozer.version>
+        <!-- == JavaEE/SE APIs == -->
+        <javax.inject.version>1</javax.inject.version>
+        <javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
+        <javax.transaction.version>1.1</javax.transaction.version>
+        <!-- == Logging == -->
+        <org.slf4j-version>1.7.5</org.slf4j-version>
+        <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
+        <org.lazyluke.version>0.2.6</org.lazyluke.version>
+        <!-- == Maven Plugins == -->
+        <org.apache.maven.plugins.maven-compiler-plugin.version>2.5.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-dependency-plugin.version>2.5</org.apache.maven.plugins.maven-dependency-plugin.version>
+        <org.apache.maven.plugins.maven-resources-plugin.version>2.6</org.apache.maven.plugins.maven-resources-plugin.version>
+        <org.apache.maven.plugins.maven-source-plugin.version>2.2</org.apache.maven.plugins.maven-source-plugin.version>
+        <org.apache.maven.plugins.maven-war-plugin.version>2.2</org.apache.maven.plugins.maven-war-plugin.version>
+        <org.apache.tomcat.maven.version>2.2</org.apache.tomcat.maven.version>
+        <!-- == Other Properties== -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <archetype.test.skip>true</archetype.test.skip>
+        <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
+        <encoding>UTF-8</encoding>
+        <java-version>1.8</java-version>
+        <junit.version>4.11</junit.version>
+    </properties>
 
 
     <dependencies>
@@ -25,13 +62,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>jsp-api</artifactId>
-            <version>2.1</version>
+            <version>${javax.servlet.servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -48,19 +79,16 @@
             <scope>test</scope>
         </dependency>
 
-
-
-
-
+        <!-- Mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.1</version>
+            <version>${org.mybatis.mybatis.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
-            <version>1.3.0</version>
+            <version>${org.mybatis.mybatis-spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -68,16 +96,9 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
-        </dependency>
-
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.39</version>
+            <version>${mysql.mysql-connector-java.version}</version>
         </dependency>
 
         <!-- Spring Security -->
@@ -238,12 +259,11 @@
             </exclusions>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/com.google.collections/google-collections -->
         <dependency>
             <groupId>com.google.collections</groupId>
             <artifactId>google-collections</artifactId>
-            <version>1.0</version>
+            <version>${com.google.collections.google-collections.version}</version>
         </dependency>
 
         <!-- == Begin BeanValidation == -->
@@ -323,66 +343,98 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--&lt;!&ndash; == Begin Amateras == &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>jp.sf.amateras.functions</groupId>-->
-            <!--<artifactId>functions</artifactId>-->
-            <!--<version>${jp.sf.amateras.functions.version}</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>jsonic</artifactId>-->
-                    <!--<groupId>net.arnx</groupId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>log4j</artifactId>-->
-                    <!--<groupId>log4j</groupId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash; == End Amateras == &ndash;&gt;-->
     </dependencies>
-
-    <properties>
-        <spring.version>4.3.2.RELEASE</spring.version>
-        <spring.security.version>3.1.4.RELEASE</spring.security.version>
-        <javax.validation.version>1.0.0.Final</javax.validation.version>
-        <org.hibernate.hibernate-validator.version>4.3.1.Final</org.hibernate.hibernate-validator.version>
-        <!-- == Dozer== -->
-        <dozer.version>5.4.0</dozer.version>
-        <!-- == JavaEE/SE APIs == -->
-        <javax.inject.version>1</javax.inject.version>
-        <javax.servlet.jstl.version>1.2</javax.servlet.jstl.version>
-        <javax.transaction.version>1.1</javax.transaction.version>
-        <tomcat.api.version>7.0.40</tomcat.api.version>
-        <!-- == Amateras == -->
-        <jp.sf.amateras.functions.version>1.1.2</jp.sf.amateras.functions.version>
-        <!-- == Logging == -->
-        <org.slf4j-version>1.7.5</org.slf4j-version>
-        <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
-        <org.lazyluke.version>0.2.6</org.lazyluke.version>
-    </properties>
-
 
 
     <build>
         <finalName>pfcase</finalName>
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <includes>
-                        <include>**/*Tests.java</include>
+                        <include>**/*Test.java</include>
                     </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
+                <version>${com.google.code.maven-license-plugin.version}</version>
+                <configuration>
+                    <header>src/etc/header.txt</header>
+                    <includes>
+                        <include>src/**/*.java</include>
+                    </includes>
+                    <encoding>${encoding}</encoding>
+                    <headerDefinitions>
+                        <headerDefinition>src/etc/header-definition.xml</headerDefinition>
+                    </headerDefinitions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>install</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>sources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-resources-plugin.version}</version>
+                <configuration>
+                    <encoding>${encoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>source-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-war-plugin.version}</version>
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${org.apache.tomcat.maven.version}</version>
+                <configuration>
+                    <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
         </plugins>
