@@ -1,6 +1,65 @@
-<%@ include file="common/IncludeHead.jsp"%>
-<link href="../css/my.css" rel="stylesheet">
-<%@ include file="common/IncludeNavbar.jsp"%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>捉虫记</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <%--<link href="css/bootstrap-theme.min.css" rel="stylesheet">--%>
+
+    <link href="css/my.css" rel="stylesheet">
+
+</head>
+
+<body>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/my">捉虫记</a>
+            <img id="Brand" alt="Brand" src="images/capture_bug.png" style="height: 50px; width: 50px;">
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li <c:if test="${active_my == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/my">我的任务</a></li>
+                <sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal.account" var="account" />
+                    <c:if test="${account.role != 'cs'}">
+                        <li <c:if test="${active_newTask == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/newTaskForm">新建任务</a></li>
+                    </c:if>
+                </sec:authorize>
+                <li <c:if test="${active_newCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/newCaselistForm">新建用例</a></li>
+                <li <c:if test="${active_allCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/all">查看用例</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <sec:authorize access="isAuthenticated()">
+                    <sec:authentication property="principal.account" var="account" />
+                    <li><a href="#">${account.username}</a></li>
+                    <li><a href="${pageContext.request.contextPath}/account/signoff">退出</a></li>
+                </sec:authorize>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+<%--<%@ include file="common/IncludeHead.jsp"%>--%>
+<%--<link href="css/my.css" rel="stylesheet">--%>
+<%--<%@ include file="common/IncludeNavbar.jsp"%>--%>
+
 
     <div id="Content" class="container">
         <c:forEach items="${taskMap}" var="taskEntry">
@@ -79,10 +138,10 @@
                                         <c:when test="${taskcase.getEvaluated()}">
                                             <c:choose>
                                                 <c:when test="${taskcase.getCasescore()}">
-                                                    <img class="img_${taskEntry.key}" src="/images/good.png" />
+                                                    <img class="img_${taskEntry.key}" src="images/good.png" />
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <img class="img_${taskEntry.key}" src="/images/bad.png" />
+                                                    <img class="img_${taskEntry.key}" src="images/bad.png" />
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:when>
@@ -105,7 +164,7 @@
                                 <td id="bugurl_${taskEntry.key}_${caseid}">
                                     <c:choose>
                                         <c:when test="${not empty taskcase.getBugurl()}">
-                                            <a class="buglink" href="${taskcase.getBugurl()}" target="_blank"><img src="/images/bug.png" /></a>
+                                            <a class="buglink" href="${taskcase.getBugurl()}" target="_blank"><img src="images/bug.png" /></a>
                                             <sec:authorize access="isAuthenticated()">
                                                 <sec:authentication property="principal.account" var="account" />
                                                 <c:if test="${account.role != 'cs' && account.role != 'admin'}">
@@ -189,7 +248,7 @@
                         caseid: caseid
                     },
                     success: function (resp) {
-                        var img = '<img class="img_' + taskid + '" src="/images/good.png" />'
+                        var img = '<img class="img_' + taskid + '" src="images/good.png" />'
                         $("#casescore_" + resp).html('');
                         $("#casescore_" + resp).append(img);
 
@@ -228,7 +287,7 @@
                         caseid: caseid
                     },
                     success: function (resp) {
-                        var img = '<img class="img_' + taskid + '" src="/images/bad.png" />'
+                        var img = '<img class="img_' + taskid + '" src="images/bad.png" />'
                         $("#casescore_" + resp).html('');
                         $("#casescore_" + resp).append(img);
 
@@ -269,7 +328,7 @@
                             bugurl: bugurl
                         },
                         success: function (resp) {
-                            var e1 = '<a class="buglink" href="' + bugurl + '" target="_blank"><img src="/images/bug.png" /></a>';
+                            var e1 = '<a class="buglink" href="' + bugurl + '" target="_blank"><img src="images/bug.png" /></a>';
                             var e2 = '<input class="bugurl" data-taskid="' + taskid + '" data-caseid="' + caseid + '" type="url" value="' + bugurl + '">';
                             $("#bugurl_" + resp).html('');
                             $("#bugurl_" + resp).append(e1, e2);
