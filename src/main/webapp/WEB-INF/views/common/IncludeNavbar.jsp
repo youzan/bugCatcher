@@ -12,7 +12,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="${pageContext.request.contextPath}/my">捉虫记</a>
-      <img id="Brand" alt="Brand" src="/images/capture_bug.png" style="height: 50px; width: 50px;">
+      <img id="Brand" alt="Brand" src="../images/capture_bug.png" style="height: 50px; width: 50px;">
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
