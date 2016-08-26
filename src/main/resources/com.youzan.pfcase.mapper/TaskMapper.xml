@@ -9,7 +9,7 @@
     <select id="getAllTask" resultType="Task">
         SELECT
         *
-        FROM TASK
+        FROM task
         WHERE not deleted=1
         ORDER BY createtime DESC
     </select>
@@ -17,7 +17,7 @@
     <select id="getAllTaskByUsername" parameterType="map" resultType="Task">
         SELECT
         *
-        FROM TASK
+        FROM task
         WHERE not deleted=1
         AND (owner="${username}" OR creator="${username}")
         ORDER BY createtime DESC
@@ -26,27 +26,27 @@
     <select id="getTaskByTaskid" parameterType="int" resultType="Task">
         SELECT
         *
-        FROM TASK
-        WHERE TASK.taskid= ${_parameter}
+        FROM task
+        WHERE task.taskid= ${_parameter}
     </select>
 
     <select id="getUnpreparedTasks" resultType="Task">
         SELECT
         *
-        FROM TASK
-        WHERE TASK.prepared=0
+        FROM task
+        WHERE task.prepared=0
         AND not deleted=1
     </select>
 
     <select id="getTaskscore" parameterType="map" resultType="Integer">
         SELECT
         taskscore
-        FROM TASK
-        WHERE TASKID = #{taskid}
+        FROM task
+        WHERE taskid = #{taskid}
     </select>
 
     <insert id="insertTask" parameterType="Task">
-        INSERT INTO TASK
+        INSERT INTO task
         (taskname, owner, creator, modifier)
         VALUES
         (#{taskname}, #{owner}, #{creator}, #{modifier})
@@ -54,25 +54,25 @@
 
 
     <update id="updateTask" parameterType="Task">
-        UPDATE TASK SET
+        UPDATE task SET
         taskname = "${taskname}", owner = "${owner}", modifier = "${modifier}", updatetime = "${updatetime}"
         WHERE taskid = #{taskid}
     </update>
 
     <update id="updateTaskPrepared" parameterType="int">
-        UPDATE TASK SET
+        UPDATE task SET
         prepared = 1
         WHERE taskid = #{_parameter}
     </update>
 
     <update id="updateTaskscore" parameterType="map">
-        UPDATE TASK SET
+        UPDATE task SET
         taskdone = 1, taskscore = #{taskscore}
         WHERE taskid = #{taskid}
     </update>
 
     <update id="delTask" parameterType="map">
-        UPDATE TASK SET
+        UPDATE task SET
         deleted = 1, modifier = "${modifier}", updatetime = "${updatetime}"
         WHERE taskid = #{taskid}
     </update>
