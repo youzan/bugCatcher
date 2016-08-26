@@ -25,7 +25,7 @@
         COUNT(*)
         FROM taskcase
         WHERE taskid = #{taskid}
-        AND EVALUATED = 1
+        AND evaluated = 1
     </select>
 
     <select id="getTaskGoodResultCount" parameterType="map" resultType="Integer">
@@ -33,8 +33,8 @@
         COUNT(*)
         FROM taskcase
         WHERE taskid = #{taskid}
-        AND EVALUATED = 1
-        AND CASESCORE = 1
+        AND evaluated = 1
+        AND casescore = 1
     </select>
 
 
