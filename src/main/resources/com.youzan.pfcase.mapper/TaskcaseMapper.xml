@@ -10,29 +10,29 @@
     <select id="getAllTaskcase" resultType="Taskcase">
         SELECT
         *
-        FROM TASKCASE
+        FROM taskcase
     </select>
 
     <select id="getTaskCount" parameterType="map" resultType="Integer">
         SELECT
         COUNT(*)
-        FROM TASKCASE
-        WHERE TASKID = #{taskid}
+        FROM taskcase
+        WHERE taskid = #{taskid}
     </select>
 
     <select id="getTaskDoneCount" parameterType="map" resultType="Integer">
         SELECT
         COUNT(*)
-        FROM TASKCASE
-        WHERE TASKID = #{taskid}
+        FROM taskcase
+        WHERE taskid = #{taskid}
         AND EVALUATED = 1
     </select>
 
     <select id="getTaskGoodResultCount" parameterType="map" resultType="Integer">
         SELECT
         COUNT(*)
-        FROM TASKCASE
-        WHERE TASKID = #{taskid}
+        FROM taskcase
+        WHERE taskid = #{taskid}
         AND EVALUATED = 1
         AND CASESCORE = 1
     </select>
@@ -51,36 +51,36 @@
     <update id="updateTaskid" parameterType="Taskcases">
         UPDATE taskcase
         SET taskid = #{taskid}
-        WHERE TASKID = 0
+        WHERE taskid = 0
     </update>
 
 
     <update id="updateCasedone" parameterType="map">
         UPDATE taskcase
         SET casedone = 1
-        WHERE TASKID = #{taskid}
-        AND CASEID = #{caseid}
+        WHERE taskid = #{taskid}
+        AND caseid = #{caseid}
     </update>
 
     <update id="updateGoodCasescore" parameterType="map">
         UPDATE taskcase
         SET evaluated = 1, casescore = 1
-        WHERE TASKID = #{taskid}
-        AND CASEID = #{caseid}
+        WHERE taskid = #{taskid}
+        AND caseid = #{caseid}
     </update>
 
     <update id="updateBadCasescore" parameterType="map">
         UPDATE taskcase
         SET evaluated = 1
-        WHERE TASKID = #{taskid}
-        AND CASEID = #{caseid}
+        WHERE taskid = #{taskid}
+        AND caseid = #{caseid}
     </update>
 
     <update id="updateBugurl" parameterType="map">
         UPDATE taskcase
         SET bugurl = #{bugurl}
-        WHERE TASKID = #{taskid}
-        AND CASEID = #{caseid}
+        WHERE taskid = #{taskid}
+        AND caseid = #{caseid}
     </update>
 
 

@@ -9,15 +9,15 @@
     <select id="getAllCaselist" resultType="Caselist">
         SELECT
         *
-        FROM CASELIST
+        FROM caselist
         WHERE not deleted=1
     </select>
 
     <select id="getCaselist" parameterType="int" resultType="Caselist">
         SELECT
         *
-        FROM CASELIST
-        WHERE CASEID = ${_parameter}
+        FROM caselist
+        WHERE caseid = ${_parameter}
     </select>
 
 
