@@ -437,6 +437,7 @@
                 <version>${org.apache.tomcat.maven.version}</version>
                 <configuration>
                     <uriEncoding>UTF-8</uriEncoding>
+                    <path>/</path>
                 </configuration>
             </plugin>
         </plugins>

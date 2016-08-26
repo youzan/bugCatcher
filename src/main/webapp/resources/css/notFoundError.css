@@ -6,7 +6,7 @@
     margin:0 auto;
     width:130px;
     height:104px;
-    background: url("../images/dragon.gif") center center no-repeat;
+    background: url("/images/dragon.gif") center center no-repeat;
     background-size:130px 104px
 }
 .error-msg {
