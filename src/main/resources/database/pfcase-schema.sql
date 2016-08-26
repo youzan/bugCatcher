@@ -54,7 +54,7 @@ create table task (
 
 
 create table taskcase (
-    taskid int not null DEFAULT 0 comment '任务id',
+    taskid int not null comment '任务id',
     caseid int not null comment '用例id',
     casedone TINYINT not null DEFAULT 0 comment '某用例已执行完成?',
     evaluated TINYINT not null DEFAULT 0 comment '某用例已评分?',
