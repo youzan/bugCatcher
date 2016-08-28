@@ -17,6 +17,10 @@ public interface CaselistMapper {
 
     Caselist getCaselist(int caseid);
 
+    List<String> getBelongmoduleas();
+    List<String> getBelongmodulebs();
+    List<String> getBelongmodulecs();
+
 
     void insertCaselist(Caselist caselist);
 
