@@ -20,6 +20,27 @@
         WHERE caseid = ${_parameter}
     </select>
 
+    <select id="getBelongmoduleas" resultType="String">
+        SELECT DISTINCT
+        belongmodulea
+        FROM caselist
+        WHERE deleted = 0
+    </select>
+
+    <select id="getBelongmodulebs" resultType="String">
+        SELECT DISTINCT
+        belongmoduleb
+        FROM caselist
+        WHERE deleted = 0
+    </select>
+
+    <select id="getBelongmodulecs" resultType="String">
+        SELECT DISTINCT
+        belongmodulec
+        FROM caselist
+        WHERE deleted = 0
+    </select>
+
 
     <insert id="insertCaselist" parameterType="Caselist">
         INSERT INTO caselist

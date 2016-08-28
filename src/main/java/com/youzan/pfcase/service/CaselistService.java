@@ -23,6 +23,10 @@ public class CaselistService {
 
     public Caselist getCaselist(int caseid) { return caselistMapper.getCaselist(caseid); }
 
+    public List<String> getBelongmoduleas() { return caselistMapper.getBelongmoduleas(); };
+    public List<String> getBelongmodulebs() { return caselistMapper.getBelongmodulebs(); };
+    public List<String> getBelongmodulecs() { return caselistMapper.getBelongmodulecs(); };
+
 
 
     @Transactional

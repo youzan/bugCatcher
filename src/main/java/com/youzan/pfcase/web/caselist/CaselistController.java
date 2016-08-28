@@ -64,6 +64,9 @@ public class CaselistController {
     @RequestMapping("newCaselistForm")
     public String newCaselistForm(ModelMap model) {
         model.addAttribute("active_newCase", true);
+        model.addAttribute("belongmoduleas", caselistService.getBelongmoduleas());
+        model.addAttribute("belongmodulebs", caselistService.getBelongmodulebs());
+        model.addAttribute("belongmodulecs", caselistService.getBelongmodulecs());
         return "caselist/NewCaselistForm";
     }
 
@@ -90,6 +93,11 @@ public class CaselistController {
         Caselist caselist = caselistService.getCaselist(caseid);
         model.addAttribute("caselist", caselist);
         model.addAttribute("action", action);
+        if (action.equals("edit")) {
+            model.addAttribute("belongmoduleas", caselistService.getBelongmoduleas());
+            model.addAttribute("belongmodulebs", caselistService.getBelongmodulebs());
+            model.addAttribute("belongmodulecs", caselistService.getBelongmodulecs());
+        }
 
         return "caselist/EditCaselistForm";
 

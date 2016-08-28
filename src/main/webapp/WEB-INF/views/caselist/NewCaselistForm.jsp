@@ -13,13 +13,28 @@
         <form:input path="casename" id="casename" class="form-control" placeholder="用例名称" required="true" autofocus="true" />
         <label for="belongmodulea" class="sr-only">一级模块</label>
         <form:errors path="belongmodulea" cssClass="error" />
-        <form:input path="belongmodulea" id="belongmodulea" class="form-control" placeholder="一级模块" required="true" />
+        <form:input path="belongmodulea" list="belongmoduleas" id="belongmodulea" class="form-control" placeholder="一级模块" required="true" />
+        <datalist id="belongmoduleas">
+            <c:forEach var="belongmodulea" items="${belongmoduleas}">
+                <option value=${belongmodulea}>
+            </c:forEach>
+        </datalist>
         <label for="belongmoduleb" class="sr-only">二级模块</label>
         <form:errors path="belongmoduleb" cssClass="error" />
-        <form:input path="belongmoduleb" id="belongmoduleb" class="form-control" placeholder="二级模块" required="true" />
+        <form:input path="belongmoduleb" list="belongmodulebs" id="belongmoduleb" class="form-control" placeholder="二级模块" required="true" />
+        <datalist id="belongmodulebs">
+            <c:forEach var="belongmoduleb" items="${belongmodulebs}">
+            <option value=${belongmoduleb}>
+                </c:forEach>
+        </datalist>
         <label for="belongmodulec" class="sr-only">三级模块</label>
         <form:errors path="belongmodulec" cssClass="error" />
-        <form:input path="belongmodulec" id="belongmodulec" class="form-control" placeholder="三级模块" required="true" />
+        <form:input path="belongmodulec" list="belongmodulecs" id="belongmodulec" class="form-control" placeholder="三级模块" required="true" />
+        <datalist id="belongmodulecs">
+            <c:forEach var="belongmodulec" items="${belongmodulecs}">
+            <option value=${belongmodulec}>
+                </c:forEach>
+        </datalist>
         <label for="priority" class="sr-only">等级</label>
         <form:errors path="priority" cssClass="error" />
         <div>
