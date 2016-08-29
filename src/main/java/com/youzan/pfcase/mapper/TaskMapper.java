@@ -20,6 +20,8 @@ public interface TaskMapper {
     Task getTaskByTaskid(int taskid);
     int getTaskscore(@Param("taskid") int taskid);
 
+    List<Task> getAllDoneTask();
+    List<Task> getAllDoneTaskByUsername(@Param("username") String username);
 
     void insertTask(Task task);
 

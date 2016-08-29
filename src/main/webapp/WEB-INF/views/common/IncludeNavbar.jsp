@@ -25,6 +25,7 @@
         </sec:authorize>
         <li <c:if test="${active_newCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/newCaselistForm">新建用例</a></li>
         <li <c:if test="${active_allCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/all">查看用例</a></li>
+        <li <c:if test="${active_chart == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/chart">执行质量</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <sec:authorize access="isAuthenticated()">

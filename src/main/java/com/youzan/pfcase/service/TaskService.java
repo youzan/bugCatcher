@@ -29,6 +29,8 @@ public class TaskService {
     public int getTaskscore(int taskid) { return taskMapper.getTaskscore(taskid);
     }
 
+    public List<Task> getAllDoneTask() { return taskMapper.getAllDoneTask(); }
+    public List<Task> getAllDoneTaskByUsername(String username) { return taskMapper.getAllDoneTaskByUsername(username); }
 
     @Transactional
     public void insertTask(Task task) {

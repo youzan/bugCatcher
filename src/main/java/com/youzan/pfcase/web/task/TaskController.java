@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by sunjun on 16/8/12.
@@ -23,6 +23,7 @@ import java.util.Date;
 @Controller
 @RequestMapping("task")
 public class TaskController {
+    private List<Task> chartTasks;
 
     @Autowired
     protected Mapper beanMapper;
@@ -124,4 +125,35 @@ public class TaskController {
     }
 
 
+    //
+    @RequestMapping(value = "chart", method = RequestMethod.GET)
+    public String getCaselist(ModelMap model) {
+        model.addAttribute("active_chart", true);
+        UserDetails userDetails = (UserDetails) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        String username = userDetails.getAccount().getUsername();
+        String role = userDetails.getAccount().getRole();
+        if (role.equals("kf")) {
+            chartTasks = taskService.getAllDoneTaskByUsername(username);
+        } else {
+            chartTasks = taskService.getAllDoneTask();
+        }
+
+        Map<String, Integer> chartMap = new LinkedHashMap<>();
+        List<String> backgroundColor = new ArrayList<>();
+        List<String> borderColor = new ArrayList<>();
+        for (Task task : chartTasks) {
+            chartMap.put("'" + task.getTaskname() + "'", task.getTaskscore());
+            backgroundColor.add("'rgba(54, 162, 235, 0.2)'");
+            borderColor.add("'rgba(54, 162, 235, 1)'");
+        }
+        model.addAttribute("chartMap", chartMap);
+        model.addAttribute("backgroundColor", backgroundColor);
+        model.addAttribute("borderColor", borderColor);
+
+        return "task/Chart";
+
+    }
 }
+
+

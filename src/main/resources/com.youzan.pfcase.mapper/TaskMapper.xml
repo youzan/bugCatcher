@@ -23,6 +23,25 @@
         ORDER BY createtime DESC
     </select>
 
+    <select id="getAllDoneTask" resultType="Task">
+        SELECT
+        *
+        FROM task
+        WHERE taskdone = 1
+        AND deleted = 0
+        ORDER BY createtime
+    </select>
+
+    <select id="getAllDoneTaskByUsername" parameterType="map" resultType="Task">
+        SELECT
+        *
+        FROM task
+        WHERE taskdone = 1
+        AND deleted = 0
+        AND owner="${username}"
+        ORDER BY createtime
+    </select>
+
     <select id="getTaskByTaskid" parameterType="int" resultType="Task">
         SELECT
         *

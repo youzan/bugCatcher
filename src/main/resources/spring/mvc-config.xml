@@ -17,6 +17,7 @@
     <mvc:resources mapping="/images/**" location="/resources/images/" cache-period="#{60 * 60}" />
     <mvc:resources mapping="/jquery/**" location="/resources/vendor/jquery/" cache-period="#{60 * 60}" />
     <mvc:resources mapping="/tablefilter/**" location="/resources/vendor/tablefilter/" cache-period="#{60 * 60}" />
+    <mvc:resources mapping="/chart/**" location="/resources/vendor/chart/" cache-period="#{60 * 60}" />
     <!--<mvc:default-servlet-handler />-->
 
 

@@ -11,7 +11,7 @@
     <form:input path="taskid" id="taskid" class="form-control" placeholder="任务id" value="${task.taskid}" required="true" readonly="true" />
     <label for="taskname" class="sr-only">任务名称</label>
     <form:errors path="taskname" cssClass="error" />
-    <form:input path="taskname" id="taskname" class="form-control" placeholder="任务名称" value="${task.taskname}" required="true" autofocus="true" />
+    <form:input path="taskname" id="taskname" class="form-control" placeholder="任务名称 (中英文/下划线)" value="${task.taskname}" required="true" autofocus="true" />
     <label for="owner" class="sr-only">任务执行人</label>
     <form:errors path="owner" cssClass="error" />
     <div>
