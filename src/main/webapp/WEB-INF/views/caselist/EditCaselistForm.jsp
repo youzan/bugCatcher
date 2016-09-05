@@ -87,6 +87,9 @@
     <c:if test="${action == \"edit\"}">
       <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
     </c:if>
+    <c:if test="${action == \"get\"}">
+      <a class="btn btn-lg btn-primary btn-block" href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caselist.caseid}&action=edit">编辑</a>
+    </c:if>
 
   </form:form>
 </div> <!-- /container -->
