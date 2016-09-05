@@ -11,6 +11,7 @@
         *
         FROM caselist
         WHERE not deleted=1
+        ORDER BY createtime DESC
     </select>
 
     <select id="getCaselist" parameterType="int" resultType="Caselist">
