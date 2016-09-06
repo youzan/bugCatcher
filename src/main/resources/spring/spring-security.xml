@@ -18,7 +18,7 @@
                     logout-url="/account/signoff"
                     logout-success-url="/" />
 
-        <sec:remember-me key="uniqueAndSecret" token-validity-seconds="2419200"/>
+        <sec:remember-me key="uniqueAndSecret" remember-me-parameter="remember-me" token-validity-seconds="2419200"/>
 
         <sec:intercept-url pattern="/my/**" access="isAuthenticated()" />
         <sec:intercept-url pattern="/task/**" access="isAuthenticated()" />

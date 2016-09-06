@@ -21,7 +21,7 @@
                     <input type="password" id="j_password" name='j_password' class="form-control" placeholder="密码" required>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="remember_me" name="remember-me" value="remember-me"> 记住我
+                            <input type="checkbox" id="remember_me" name="remember-me"> 记住我
                         </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
