@@ -62,7 +62,7 @@
                         <c:set var="caseid">${taskcase.getCaseid()}</c:set>
                         <tr>
                                 <%--<td>${caseid}</td>--%>
-                            <td class="casename"><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get">${caselistMap.get(caseid).casename}</a></td>
+                            <td class="casename"><a href="${pageContext.request.contextPath}/caselist/editCaselistForm?caseid=${caseid}&action=get" target="_blank">${caselistMap.get(caseid).casename}</a></td>
                             <td>
                                 <sec:authorize access="isAuthenticated()">
                                     <sec:authentication property="principal.account" var="account" />
