@@ -79,7 +79,7 @@
             <form:checkbox path="automated" checked="checked" /> 已自动化?
           </c:when>
           <c:otherwise>
-            <form:checkbox path="automated" /> 已评审?
+            <form:checkbox path="automated" /> 已自动化?
           </c:otherwise>
         </c:choose>
       </label>
