@@ -31,7 +31,8 @@ public class FileUploadController {
     }
 
     //file list
-    @GetMapping
+//    @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public String listUploadedFiles(Model model) throws IOException {
 
         model.addAttribute("active_fileUpload", true);
@@ -47,7 +48,8 @@ public class FileUploadController {
     }
 
     //download file
-    @GetMapping("/files/{filename:.+}")
+//    @GetMapping("/files/{filename:.+}")
+    @RequestMapping(value = "/files/{filename:.+}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
@@ -59,7 +61,8 @@ public class FileUploadController {
     }
 
     //upload file
-    @PostMapping
+//    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
