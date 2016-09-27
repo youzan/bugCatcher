@@ -44,7 +44,7 @@ public class FileUploadController {
                                 .build().toString())
                 .collect(Collectors.toList()));
 
-        return "fileupload/UploadForm";
+        return "fileupload/uploadForm";
     }
 
     //download file
