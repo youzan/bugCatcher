@@ -76,7 +76,7 @@
 
                 <sec:authorize access="isAuthenticated()">
                     <sec:authentication property="principal.account" var="account" />
-                    <c:if test="${account.role == 'cs' || account.role == 'admin'}">
+                    <c:if test="${account.role == 'kf' || account.role == 'cs' || account.role == 'admin'}">
                         <button class="btn btn-lg btn-primary btn-block" type="submit">分配</button>
                     </c:if>
                 </sec:authorize>
