@@ -8,11 +8,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
@@ -23,15 +24,23 @@ import java.util.stream.Collectors;
 @RequestMapping("fileupload")
 public class FileUploadController {
 
-    private final StorageService storageService;
+    @Autowired
+    private StorageService storageService;
 
     @Autowired
-    public FileUploadController(StorageService storageService) {
-        this.storageService = storageService;
+    private MultipartFileBucketValidator multipartFileBucketValidator;
+
+    @InitBinder("multipartFileBucket")
+    protected void initBinderMultipartFileBucket(WebDataBinder binder) {
+        binder.setValidator(multipartFileBucketValidator);
+    }
+
+    @ModelAttribute
+    public MultipartFileBucket setUpForm() {
+        return new MultipartFileBucket();
     }
 
     //file list
-//    @GetMapping
     @RequestMapping(method = RequestMethod.GET)
     public String listUploadedFiles(Model model) throws IOException {
 
@@ -48,7 +57,6 @@ public class FileUploadController {
     }
 
     //download file
-//    @GetMapping("/files/{filename:.+}")
     @RequestMapping(value = "/files/{filename:.+}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
@@ -61,13 +69,22 @@ public class FileUploadController {
     }
 
     //upload file
-//    @PostMapping
     @RequestMapping(method = RequestMethod.POST)
-    public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+    public String handleFileUpload(@Valid MultipartFileBucket multipartFileBucket, BindingResult result, Model model) {
 
-        storageService.store(file);
-//        redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
+        if (result.hasErrors()) {
+            model.addAttribute("active_fileUpload", true);
+            model.addAttribute("files", storageService
+                    .loadAll()
+                    .map(path ->
+                            MvcUriComponentsBuilder
+                                    .fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString())
+                                    .build().toString())
+                    .collect(Collectors.toList()));
+
+            return "fileupload/uploadForm";
+        }
+        storageService.store(multipartFileBucket.getMultipartFile());
 
         return "redirect:/fileupload";
     }
@@ -78,3 +95,5 @@ public class FileUploadController {
     }
 
 }
+
+

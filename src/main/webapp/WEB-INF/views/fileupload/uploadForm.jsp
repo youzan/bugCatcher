@@ -7,11 +7,17 @@
 <div id="Content" class="container">
   <div class="fileupload">
     <h2>请上传自列用例</h2>
-    <form method="post" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">
-        <%--<input type="text" name="name"/>--%>
-        <input type="file" name="file" class="form-control" />
+    <%--<form method="post" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">--%>
+        <%--&lt;%&ndash;<input type="text" name="name"/>&ndash;%&gt;--%>
+        <%--<input type="file" name="file" class="form-control" />--%>
+        <%--<button class="btn btn-lg btn-primary btn-block" type="submit">上传</button>--%>
+    <%--</form>--%>
+    <form:form class="form-horizontal" modelAttribute="multipartFileBucket" method="post" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">
+        <label for="multipartFile" class="sr-only">需上传的文件</label>
+        <form:errors path="multipartFile" cssClass="error" />
+        <form:input type="file" path="multipartFile" id="multipartFile" class="form-control" />
         <button class="btn btn-lg btn-primary btn-block" type="submit">上传</button>
-    </form>
+    </form:form>
   </div>
 
   <%--<div class="filelist">--%>
