@@ -1,6 +1,7 @@
 package com.youzan.pfcase.web.task;
 
 import com.youzan.pfcase.domain.Account;
+import com.youzan.pfcase.domain.Rank;
 import com.youzan.pfcase.domain.Task;
 import com.youzan.pfcase.domain.UserDetails;
 import com.youzan.pfcase.service.AccountService;
@@ -53,6 +54,8 @@ public class TaskController {
     public String newTask(@Valid TaskForm form, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+            model.addAttribute("active_newTask", true);
+
             return "task/NewTaskForm";
         }
 
@@ -154,6 +157,33 @@ public class TaskController {
         return "task/Chart";
 
     }
+
+    //
+    @RequestMapping("rankForm")
+    public String rankForm(@ModelAttribute("rank") Rank rank, ModelMap model) {
+        model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+        model.addAttribute("active_rank", true);
+        model.addAttribute("totalScores", taskService.getTotalScores());
+//        model.addAttribute("exeTimes", taskService.getExeTimes());
+
+        return "task/RankForm";
+    }
+
+    @RequestMapping("rank")
+    public String rank(@Valid @ModelAttribute("rank") Rank rank, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            model.addAttribute("KFAccounts", accountService.getAllKFAccount());
+            model.addAttribute("active_rank", true);
+            model.addAttribute("totalScores", taskService.getTotalScores());
+
+            return "task/RankForm";
+        }
+
+        taskService.insertRank(rank);
+
+        return "redirect:/task/rankForm";
+    }
+
 }
 
 

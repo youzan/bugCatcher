@@ -66,3 +66,16 @@ create table taskcase (
     key `idx_taskid_casescore`(`taskid`, `casescore`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='任务用例关系表';
 
+
+create table rank (
+    rankid int not null auto_increment,
+    taskname varchar(25) not null comment '任务名称',
+    owner varchar(25) not null comment '任务执行人',
+    score TINYINT not null DEFAULT 0 comment '评分',
+    reason TEXT not null comment '评分理由',
+
+    constraint pk_rankid primary key (rankid),
+    key `idx_owner`(`owner`),
+    key `idx_owner_score`(`owner`, `score`)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='积分排行表';
+

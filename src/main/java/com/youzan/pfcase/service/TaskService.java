@@ -1,15 +1,15 @@
 package com.youzan.pfcase.service;
 
-import com.youzan.pfcase.domain.Caselist;
 import com.youzan.pfcase.domain.Task;
-import com.youzan.pfcase.mapper.CaselistMapper;
 import com.youzan.pfcase.mapper.TaskMapper;
+import com.youzan.pfcase.domain.Rank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by sunjun on 16/8/12.
@@ -55,4 +55,14 @@ public class TaskService {
     public void delTask(int taskid, String modifier, Timestamp updatetime) {
         taskMapper.delTask(taskid, modifier, updatetime);
     }
+
+    //
+    @Transactional
+    public void insertRank(Rank rankForm) {
+        taskMapper.insertRank(rankForm);
+    }
+
+    public List<Map<String, String>> getTotalScores() { return taskMapper.getTotalScores(); }
+//    public List<Map<String, String>> getExeTimes() { return taskMapper.getExeTimes(); }
+
 }

@@ -100,8 +100,28 @@
         <!--DELETE FROM task-->
         <!--WHERE taskid = #{_parameter}-->
     <!--</delete>-->
+
+    <insert id="insertRank" parameterType="Rank">
+        INSERT INTO rank
+        (taskname, owner, score, reason)
+        VALUES
+        (#{taskname}, #{owner}, #{score}, #{reason})
+    </insert>
+
+    <select id="getTotalScores" resultType="hashmap">
+        SELECT
+        owner, SUM(score) as totalscores, COUNT(owner) as exetimes
+        FROM rank
+        GROUP BY owner
+        ORDER BY totalscores DESC, exetimes
+    </select>
+
+    <!--<select id="getExeTimes" resultType="hashmap">-->
+        <!--SELECT-->
+        <!--owner, COUNT(owner) as exetimes-->
+        <!--FROM rank-->
+        <!--GROUP BY owner-->
+        <!--ORDER BY exetimes DESC-->
+    <!--</select>-->
+
 </mapper>
-
-
-
-

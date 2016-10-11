@@ -1,0 +1,71 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.form-newtask {
+    max-width: 375px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-newtask .form-newtask-heading {
+    margin-bottom: 10px;
+}
+.form-newtask .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-newtask .form-control:focus {
+    z-index: 2;
+}
+.form-newtask input[type="text"] {
+    margin-bottom: 10px;
+}
+.description {
+    line-height: 25px;
+}
+.select-item {
+    width: 75px;
+    float: right;
+    margin-right: 215px;
+}
+.score {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.rank {
+    margin-top: 25px;
+}
+
+th {
+    background: #5cb85c;
+    color: #fff;
+}
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+.rank-td {
+    text-align: left;
+}
+.rank-div {
+    width: 200px;
+    margin: auto;
+}
+.rank-bar {
+    text-align: left;
+}
+
+button {
+    margin-top: 10px;
+}
+.error {
+    color: #D8000C;
+}
