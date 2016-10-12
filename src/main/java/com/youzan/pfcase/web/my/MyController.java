@@ -43,7 +43,7 @@ public class MyController {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = userDetails.getAccount().getUsername();
 		String role = userDetails.getAccount().getRole();
-		if (username.equals("admin") || role.equals("cs")) {
+		if (role.equals("admin") || role.equals("cs")) {
 			allTask = taskService.getAllTask();
 		} else {
 			allTask = taskService.getAllTaskByUsername(username);
