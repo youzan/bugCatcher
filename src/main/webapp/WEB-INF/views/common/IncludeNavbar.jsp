@@ -27,7 +27,12 @@
         <li <c:if test="${active_allCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/all">查看用例</a></li>
         <li <c:if test="${active_fileUpload == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/fileupload">自列用例</a></li>
         <li <c:if test="${active_chart == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/chart">执行质量</a></li>
-        <li <c:if test="${active_rank == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/rankForm">華山論劍</a></li>
+        <sec:authorize access="isAuthenticated()">
+          <sec:authentication property="principal.account" var="account" />
+          <c:if test="${account.role == 'cs' || account.role == 'admin' || account.username == 'funny'}">
+            <li <c:if test="${active_rank == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/rankForm">華山論劍</a></li>
+          </c:if>
+        </sec:authorize>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <sec:authorize access="isAuthenticated()">
