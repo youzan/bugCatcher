@@ -17,12 +17,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li <c:if test="${active_my == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/my">我的任务</a></li>
-        <sec:authorize access="isAuthenticated()">
-          <sec:authentication property="principal.account" var="account" />
-          <c:if test="${account.role != 'cs'}">
-            <li <c:if test="${active_newTask == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/newTaskForm">新建任务</a></li>
-          </c:if>
-        </sec:authorize>
+        <%--<sec:authorize access="isAuthenticated()">--%>
+          <%--<sec:authentication property="principal.account" var="account" />--%>
+          <%--<c:if test="${account.role != 'cs'}">--%>
+            <%--<li <c:if test="${active_newTask == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/newTaskForm">新建任务</a></li>--%>
+          <%--</c:if>--%>
+        <%--</sec:authorize>--%>
+        <li <c:if test="${active_newTask == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/task/newTaskForm">新建任务</a></li>
         <li <c:if test="${active_newCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/newCaselistForm">新建用例</a></li>
         <li <c:if test="${active_allCase == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/caselist/all">查看用例</a></li>
         <li <c:if test="${active_fileUpload == true}">class="active"</c:if>><a href="${pageContext.request.contextPath}/fileupload">自列用例</a></li>
