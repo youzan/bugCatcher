@@ -24,6 +24,7 @@
         <sec:intercept-url pattern="/task/**" access="isAuthenticated()" />
         <sec:intercept-url pattern="/taskcase/**" access="isAuthenticated()" />
         <sec:intercept-url pattern="/caselist/**" access="isAuthenticated()" />
+        <sec:intercept-url pattern="/fileupload/**" access="isAuthenticated()" />
     </sec:http>
 
 
