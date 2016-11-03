@@ -10,13 +10,17 @@
                     <%--${taskEntry.value.taskname}--%>
                 <ul id="taskInfo" class="list-inline">
                     <li>${taskEntry.value.taskname}</li>
-                    <sec:authorize access="isAuthenticated()">
-                        <sec:authentication property="principal.account" var="account" />
-                        <c:if test="${account.role != 'cs'}">
-                            <li><a href="${pageContext.request.contextPath}/task/editTaskForm?taskid=${taskEntry.key}&action=edit">编辑</a></li>
-                            <li><a href="javascript:void(0)" data-id="${taskEntry.key}" class="del">删除</a></li>
-                        </c:if>
-                    </sec:authorize>
+
+                    <li><a href="${pageContext.request.contextPath}/task/editTaskForm?taskid=${taskEntry.key}&action=edit">编辑</a></li>
+                    <li><a href="javascript:void(0)" data-id="${taskEntry.key}" class="del">删除</a></li>
+
+                    <%--<sec:authorize access="isAuthenticated()">--%>
+                        <%--<sec:authentication property="principal.account" var="account" />--%>
+                        <%--<c:if test="${account.role != 'cs'}">--%>
+                            <%--<li><a href="${pageContext.request.contextPath}/task/editTaskForm?taskid=${taskEntry.key}&action=edit">编辑</a></li>--%>
+                            <%--<li><a href="javascript:void(0)" data-id="${taskEntry.key}" class="del">删除</a></li>--%>
+                        <%--</c:if>--%>
+                    <%--</sec:authorize>--%>
                 </ul>
             </div>
             <div class="panel-body">
