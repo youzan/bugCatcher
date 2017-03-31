@@ -6,5 +6,5 @@ mvn tomcat7:run -Dmaven.tomcat.port=<port no.> &
 
 
 #家目录下新建文件夹
-/Users/sunjun/fileupload
+fileupload
 
