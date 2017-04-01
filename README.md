@@ -36,13 +36,6 @@
 INSERT INTO signon VALUES('admin','Your Password');
 INSERT INTO account VALUES('admin','Your E-mail address','admin');
 ```
-- 修改setup.sh中的mysql配置（bugCatcher/setup.sh）  
-``` bash
-#!/usr/bin/env bash
-
-mkdir ~/fileupload
-mysql -h <mysql host> -u <mysql 用户名> -p<mysql 密码> < <上述pfcase-schema.sql文件的绝对路径>
-```
 
 - 修改jdbc.properties中的mysql配置（bugCatcher/src/main/resources/orm/jdbc.properties）
 ```
@@ -51,6 +44,14 @@ jdbc.driverClassName=com.mysql.jdbc.Driver
 jdbc.url=jdbc:mysql://<mysql host>:<mysql 端口>/pfcase
 jdbc.username=<mysql 用户名>
 jdbc.password=<mysql 密码>
+```
+
+- 修改setup.sh中的mysql配置（bugCatcher/setup.sh）
+``` bash
+#!/usr/bin/env bash
+
+mkdir ~/fileupload
+mysql -h <mysql host> -P <mysql 端口> -u <mysql 用户名> -p<mysql 密码> < <上述pfcase-schema.sql文件的绝对路径>
 ```
 
 执行`setup.sh`完成初始化
