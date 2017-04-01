@@ -25,10 +25,10 @@
 ## 使用方法
 
 ### 环境依赖
-**系统：**Linux
-**语言：**Java （Version>1.8）
-**数据库：**Mysql
-**其他工具：**Maven
+- **系统：**Linux
+- **语言：**Java （Version>1.8）
+- **数据库：**Mysql
+- **其他工具：**Maven
 
 ### 初始化
 - 修改pfcase-schema.sql中的admin账号的密码和E-mail地址（bugCatcher/src/main/resources/database/pfcase-schema.sql）  
@@ -56,8 +56,8 @@ jdbc.password=<mysql 密码>
 执行`setup.sh`完成初始化
 
 ### 启动
-mvn tomcat7:run -Dmaven.tomcat.port=<port no.> &
->**提示：**`<port no.>`设置为任意未被占用的端口即可
+mvn tomcat7:run -Dmaven.tomcat.port=<端口号> &
+>**提示：**`<端口号>`设置为任意未被占用的端口即可
 
 以部署在本机8080端口为例，打开 http://localhost:8080/ 即能打开捉虫记登录页面
 ![Alt text](README/signin.jpeg)
