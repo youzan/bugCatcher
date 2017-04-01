@@ -1,4 +1,4 @@
-![bug](./capture_bug.png)
+![bug](README/capture_bug.png)
 
 # 捉虫记
 
@@ -61,7 +61,7 @@ mvn tomcat7:run -Dmaven.tomcat.port=<port no.> &
 
 ## 典型场景使用图示
 ### 新用户注册
-<img src="./new.jpeg" width="350">
+<img src="README/new.jpeg" width="350">
 
 
 #### `角色-功能对照表`
@@ -74,33 +74,33 @@ mvn tomcat7:run -Dmaven.tomcat.port=<port no.> &
 >**admin：**内置账户，拥有最高权限，可以做任何操作，慎用。
 
 ### 产品发起项目，指定项目开发人员:
-<img src="./new_task.jpeg">
+<img src="README/new_task.jpeg">
 
 ### 测试设计用例，将项目相关的用例与项目关联:
 新建用例，模块支持新建或者选择已有的:
-![Alt text](./new_case.jpeg)
+![Alt text](README/new_case.jpeg)
 
 勾选该项目需要执行的用例并分配（用例支持按指定条件搜索/筛选）:
-![Alt text](./fenpei.jpeg)
+![Alt text](README/fenpei.jpeg)
 
 也支持Excel、Xmind文件形式的用例上传，但仅做备份用例使用：
-![Alt text](./upload.jpeg)
+![Alt text](README/upload.jpeg)
 
 
 ### 开发人员执行用例
 执行一条，已执行下勾选一条：
-![Alt text](./my.jpeg)
+![Alt text](README/my.jpeg)
 
 ### 测试检查用例执行情况，并给执行人评分
 测试人员一条条检查下去，功能无误点击good按钮，执行不到位点击bad按钮（可以将bug链接填写上去），当项目下的用例全部执行完以后会在项目概况下自动打分
-![Alt text](./pingfen.jpeg)
+![Alt text](README/pingfen.jpeg)
 
 ### 项目自测质量的打分会以图表的形式展现
-![Alt text](./pic.jpeg)
+![Alt text](README/pic.jpeg)
 
 ### 华山论剑
 此栏目主要对执行用例的开发人员进行自测质量评价，评分有A（+20）/ B（+10）/ C（-10）三个等级，具体评价标准可以自己定义，最终会给所有人员一个积分排名
-![Alt text](./jian.jpeg)
+![Alt text](README/jian.jpeg)
 
 ## TODO
 - bug管理与跟踪
