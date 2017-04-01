@@ -1,3 +1,8 @@
+CREATE DATABASE `pfcase` DEFAULT CHARACTER SET utf8;
+use `pfcase`;
+
+
+
 create table signon (
     username varchar(25) not null,
     password varchar(25)  not null,
@@ -10,7 +15,6 @@ create table account (
     role varchar(10) not null,
     constraint pk_account primary key (userid)
 );
-
 
 create table caselist (
     caseid int not null auto_increment,
@@ -33,7 +37,6 @@ create table caselist (
     key `idx_priority` (`priority`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='用例表';
 
-
 create table task (
     taskid int not null auto_increment,
     taskname varchar(25) not null comment '任务名称',
@@ -52,7 +55,6 @@ create table task (
     key `idx_taskdone` (`taskdone`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='任务表';
 
-
 create table taskcase (
     taskid int not null default 0 comment '任务id',
     caseid int not null comment '用例id',
@@ -66,7 +68,6 @@ create table taskcase (
     key `idx_taskid_casescore`(`taskid`, `casescore`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='任务用例关系表';
 
-
 create table rank (
     rankid int not null auto_increment,
     taskname varchar(25) not null comment '任务名称',
@@ -79,3 +80,7 @@ create table rank (
     key `idx_owner_score`(`owner`, `score`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='积分排行表';
 
+
+
+INSERT INTO signon VALUES('admin','Your Password');
+INSERT INTO account VALUES('admin','Your E-mail address','admin');
