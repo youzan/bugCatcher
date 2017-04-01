@@ -82,5 +82,5 @@ create table rank (
 
 
 
-INSERT INTO signon VALUES('admin','passwd');
+INSERT INTO signon VALUES('admin','Your Password');
 INSERT INTO account VALUES('admin','Your E-mail address','admin');
