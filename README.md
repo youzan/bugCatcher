@@ -111,3 +111,10 @@ mvn tomcat7:run -Dmaven.tomcat.port=<端口号> &
 
 ## 反馈与建议
 - 邮箱：<canyuns【@】163.com>
+
+## License
+
+The project is open-sourced software licensed under the [MIT license][1]
+
+
+[1]: https://opensource.org/licenses/MIT
