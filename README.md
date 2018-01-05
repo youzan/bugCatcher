@@ -1,12 +1,10 @@
 ![bug](README/capture_bug.png)
 
-# 捉虫记
+# 捉虫记 - 有赞正在【招聘】Java、测试等岗位，有意者请将简历投递至<sunjun【@】youzan.com>
 
-@[|Spring|Spring MVC|Mybatis]
+@[ Spring | Spring MVC | Mybatis ]
 
 -------------------
-
-[TOC]
 
 ## 捉虫记简介
 
@@ -107,10 +105,9 @@ mvn tomcat7:run -Dmaven.tomcat.port=<端口号> &
 
 ## Todo List
 - bug管理与跟踪
-- 。。。
 
 ## 反馈与建议
-- 邮箱：<canyuns【@】163.com>
+- 请在Issues中讨论
 
 ## License
 
