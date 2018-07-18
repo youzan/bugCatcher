@@ -2,7 +2,6 @@
 
 # 捉虫记
 
-@[ Spring | Spring MVC | Mybatis ]  
 `【招聘】Java开发、测试开发等岗位，有意者请将简历投递至<canyuns【@】163.com>`
 
 -------------------
