@@ -5,3 +5,4 @@ mysql -h <mysql host> -P <mysql 端口> -u <mysql 用户名> -p<mysql 密码> < 
 add test
 add the second line for 2
 add the third line
+
