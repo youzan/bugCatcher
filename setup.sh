@@ -6,3 +6,5 @@ add test
 add the second line for 2
 add the third line
 
+then test cancel commit
+
